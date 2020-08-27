@@ -25,4 +25,5 @@ public class FirstHomeWork {
         double sum = firstNumber + secondNumber;
         return (sum > 10) && (sum <=20);
     }
+    //part5
 }
