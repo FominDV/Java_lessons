@@ -12,12 +12,17 @@ public class FirstHomeWork {
         char symbol = 'F';
         boolean flag = true;
         System.out.println("a*(b+c/d)="+getCalculate(2.5,3L,10,floatNumber));
+        System.out.println("the sum of numbers less than or equal to 20 and greater than 10: " + isCompareNumbers(7.6, floatNumber ));
     }
 
     //part 3
     public static double getCalculate(double a, long b, int c, float d) {
-    return a*(b+c/d);
+
+        return a*(b+c/d);
     }
     //part 4
-
+    public static boolean isCompareNumbers(double firstNumber, float secondNumber){
+        double sum = firstNumber + secondNumber;
+        return (sum > 10) && (sum <=20);
+    }
 }
