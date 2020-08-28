@@ -15,41 +15,57 @@ public class FirstHomeWork {
         char symbol = 'F';
         boolean flag = true;
         String line = "Hello World";
-        System.out.println("a*(b+c/d)="+getCalculate(2.5,3L,10,floatNumber));
-        System.out.println("the sum of numbers less than or equal to 20 and greater than 10: " + isCompareNumbers(7.6, floatNumber ));
+        System.out.println("a*(b+c/d)=" + getCalculate(2.5, 3L, 10, floatNumber));
+        System.out.println("the sum of numbers less than or equal to 20 and greater than 10: " + isCompareNumbers(7.6, floatNumber));
         setCompareZero(integerNumber);
         System.out.println("number is negative: " + isNegative(47));
         //Read name from console and method "setHello" call
         Scanner input = new Scanner(System.in);
-        System.out.println("What is your name?\nInput your name: ");
+        System.out.print("What is your name?\nInput your name: ");
         String name = input.nextLine();
         setHello(name);
+        //Determine leap year
+        System.out.print("Enter the interesting you year, please: ");
+        short year = input.nextShort();
+        determineLeapYear(year);
     }
 
     //part 3
     public static double getCalculate(double a, long b, int c, float d) {
 
-        return a*(b+c/d);
+        return a * (b + c / d);
     }
+
     //part 4
-    public static boolean isCompareNumbers(double firstNumber, float secondNumber){
+    public static boolean isCompareNumbers(double firstNumber, float secondNumber) {
         double sum = firstNumber + secondNumber;
-        return (sum > 10) && (sum <=20);
+        return (sum > 10) && (sum <= 20);
     }
+
     //part5
-    public static void setCompareZero(int number){
-        if(number>=0)
+    public static void setCompareZero(int number) {
+        if (number >= 0)
             System.out.println(number + " is greater than or equal to zero");
         else
             System.out.println(number + " is less than zero");
     }
+
     //part6
-    public static boolean isNegative(int number){
-        return (number<0);
+    public static boolean isNegative(int number) {
+        return (number < 0);
     }
+
     //part 7
-    public static void setHello(String name){
+    public static void setHello(String name) {
         System.out.println("Привет, " + name);
     }
-   
+
+    //part* 8
+    public static void determineLeapYear(short year) {
+
+        if ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0)))
+            System.out.print(year + " year is leap year");
+        else
+            System.out.print(year + " year is not leap year");
+    }
 }
