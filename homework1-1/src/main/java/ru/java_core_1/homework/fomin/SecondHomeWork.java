@@ -38,23 +38,16 @@ public class SecondHomeWork {
     //part1
     static int[] transformedArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            switch (array[i]) {
-                case 1:
-                    array[i] = 0;
-                    break;
-                case 0:
-                    array[i] = 1;
-                    break;
-                default:
-                    System.out.println("Value of array is not correct");
-            }
+            array[i] = 1-array[i];
         }
         return array;
     }
 
     //Part2
     static int[] fillArray(int[] array) {
-        for (int i = 0, j = 0; i <= 21; i += 3, j++) array[j] = i;
+        for (int i = 0; i <= array.length - 1; i++) {
+            array[i] = i * 3;
+        }
         return array;
     }
 
