@@ -31,6 +31,7 @@ public class ThirdHomeWork {
         guessTheNumberGame();
         //Task 2
         guessTheWordGame();
+        read.close();
     }
 
     //Methods for task1
