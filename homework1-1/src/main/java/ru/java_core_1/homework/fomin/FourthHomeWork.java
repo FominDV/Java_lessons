@@ -116,16 +116,6 @@ public class FourthHomeWork {
         map[x][y] = USER_SYMBOL;
     }
 
-    static void machineTurn() {
-        int x, y;
-        do {
-            x = random.nextInt(map.length);
-            y = random.nextInt(map.length);
-        } while (!(isEmptyAndExist(x, y)));
-        map[x][y] = MACHINE_SYMBOL;
-        System.out.println("Machine's turn is (" + x + "," + y + ")");
-    }
-
     static boolean isVictory(char symbol) {
         int diagonalPoints1 = 0, diagonalPoints2 = 0, verticalPoints, horizontalPoints;
         for (int i = 0; i < map.length; i++) {
@@ -174,6 +164,164 @@ public class FourthHomeWork {
         return true;
     }
 
+    //Methods for Machine's turn
+    static void machineTurn() {
+        int[] XY = {0, 0};
+        XY = blockTurn();
+        if (XY[0] == -1) {
+            XY = randomTurn();
+        }
+        map[XY[0]][XY[1]] = MACHINE_SYMBOL;
+        System.out.println("Machine's turn is (" + (XY[0]+1) + "," + (XY[1]+1) + ")");
+    }
+
+    static int[] randomTurn() {
+        int[] XY = {0, 0};
+        do {
+            XY[0] = random.nextInt(map.length);
+            XY[1] = random.nextInt(map.length);
+        } while (!(isEmpty(XY[0], XY[1])));
+        return XY;
+    }
+
+    static int[] blockTurn() {
+        int XY[] = {-1, -1};
+        int diagonalPoints1 = 0;
+        int[] buffer = {-1, -1};
+        //Verify diagonal1
+        for (int range = 2; range > 0; range--) {
+            buffer[0] = -1;
+            buffer[1] = -1;
+            diagonalPoints1 = 0;
+            for (int i = 0; i < map.length; i++) {
+                if (map[i][i] == USER_SYMBOL) {
+                    diagonalPoints1 += 1;
+                } else {
+                    if (diagonalPoints1 == (POINTS_FOR_WIN - range)) {
+                        if (isEmpty(i, i)) {
+                            XY[0] = i;
+                            XY[1] = i;
+                            break;
+                        } else if (isEmpty(buffer[0], buffer[1])) {
+                            XY[0] = buffer[0];
+                            XY[1] = buffer[1];
+                            break;
+                        }
+                    } else {
+                        diagonalPoints1 = 0;
+                        buffer[0] = i;
+                        buffer[1] = i;
+                    }
+                }
+            }
+            if (XY[0] == -1 && buffer[0] != -1 && diagonalPoints1 == (POINTS_FOR_WIN - range)) {
+                XY[0] = buffer[0];
+                XY[1] = buffer[1];
+                break;
+            }
+            //Verify diagonal2
+            int diagonalPoints2 = 0;
+            buffer[0] = -1;
+            buffer[1] = -1;
+            for (int i = 0; i < map.length; i++) {
+                if (map[i][map.length - 1 - i] == USER_SYMBOL) {
+                    diagonalPoints2 += 1;
+                } else {
+                    if (diagonalPoints2 == (POINTS_FOR_WIN - range)) {
+                        if (isEmpty(i, i)) {
+                            XY[0] = i;
+                            XY[1] = map.length - 1 - i;
+                            break;
+                        } else if (isEmpty(buffer[0], buffer[1])) {
+                            XY[0] = buffer[0];
+                            XY[1] = buffer[1];
+                            break;
+                        }
+                    } else {
+                        diagonalPoints2 = 0;
+                        buffer[0] = i;
+                        buffer[1] = map.length - 1 - i;
+                    }
+                }
+            }
+            if (XY[0] == -1 && buffer[0] != -1 && diagonalPoints2 == (POINTS_FOR_WIN - range)) {
+                XY[0] = buffer[0];
+                XY[1] = buffer[1];
+                break;
+            }
+
+            for (int i = 0; i < map.length; i++) {
+                //Verify horizontal
+                int horizontalPoints = 0;
+                buffer[0] = -1;
+                buffer[1] = -1;
+                for (int j = 0; j < map.length; j++) {
+                    if (map[i][j] == USER_SYMBOL) {
+                        horizontalPoints += 1;
+                    } else {
+                        if (horizontalPoints == (POINTS_FOR_WIN - range)) {
+                            if (isEmpty(i, j)) {
+                                XY[0] = i;
+                                XY[1] = j;
+                                break;
+                            } else if (isEmpty(buffer[0], buffer[1])) {
+                                XY[0] = buffer[0];
+                                XY[1] = buffer[1];
+                                break;
+                            }
+                        } else {
+                            horizontalPoints = 0;
+                            buffer[0] = i;
+                            buffer[1] = j;
+                        }
+                    }
+                }
+                if (XY[0] == -1 && buffer[0] != -1 && horizontalPoints == (POINTS_FOR_WIN - range)) {
+                    XY[0] = buffer[0];
+                    XY[1] = buffer[1];
+                    break;
+                }
+                //Verify vertical
+                int verticalPoints = 0;
+                buffer[0] = -1;
+                buffer[1] = -1;
+                for (int j = 0; j < map.length; j++) {
+                    if (map[j][i] == USER_SYMBOL) {
+                        verticalPoints += 1;
+                    } else {
+                        if (verticalPoints == (POINTS_FOR_WIN - range)) {
+                            if (isEmpty(j, i)) {
+                                XY[0] = j;
+                                XY[1] = i;
+                                break;
+                            } else if (isEmpty(buffer[0], buffer[1])) {
+                                XY[0] = buffer[0];
+                                XY[1] = buffer[1];
+                                break;
+                            }
+                        } else {
+                            verticalPoints = 0;
+                            buffer[0] = j;
+                            buffer[1] = i;
+                        }
+                    }
+                    if (XY[0] == -1 && buffer[0] != -1 && verticalPoints == (POINTS_FOR_WIN - range)) {
+                        XY[0] = buffer[0];
+                        XY[1] = buffer[1];
+                        break;
+                    }
+                }
+            }
+        }
+        return XY;
+    }
+
+    static boolean isEmpty(int x, int y) {
+        if (x >= 0 && y >= 0 && x < map.length && y < map.length && map[x][y] == EMPTY) {
+            return true;
+        } else
+            return false;
+    }
 
     //Main method
     public static void main(String[] Args) {
