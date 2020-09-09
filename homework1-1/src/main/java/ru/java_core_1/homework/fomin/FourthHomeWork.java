@@ -167,12 +167,15 @@ public class FourthHomeWork {
     //Methods for Machine's turn
     static void machineTurn() {
         int[] XY = {0, 0};
-        XY = blockTurn();
+        XY = blockTurn(USER_SYMBOL, 2);
         if (XY[0] == -1) {
-            XY = randomTurn();
+            XY = blockTurn(MACHINE_SYMBOL, (POINTS_FOR_WIN - 1));
+            if (XY[0] == -1) {
+                XY = randomTurn();
+            }
         }
         map[XY[0]][XY[1]] = MACHINE_SYMBOL;
-        System.out.println("Machine's turn is (" + (XY[0]+1) + "," + (XY[1]+1) + ")");
+        System.out.println("Machine's turn is (" + (XY[0] + 1) + "," + (XY[1] + 1) + ")");
     }
 
     static int[] randomTurn() {
@@ -180,21 +183,29 @@ public class FourthHomeWork {
         do {
             XY[0] = random.nextInt(map.length);
             XY[1] = random.nextInt(map.length);
-        } while (!(isEmpty(XY[0], XY[1])));
+        } while (!(isEmpty(XY[0], XY[1])) && isRationalTurn(XY[0], XY[1]));
         return XY;
     }
 
-    static int[] blockTurn() {
+    static boolean isRationalTurn(int x, int y) {
+        if (x > 0 && y > 0 && x < (map.length - 1) && y < (map.length - 1)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static int[] blockTurn(char symbol, int maxRange) {
         int XY[] = {-1, -1};
         int diagonalPoints1 = 0;
         int[] buffer = {-1, -1};
         //Verify diagonal1
-        for (int range = 2; range > 0; range--) {
+        for (int range = maxRange; range > 0; range--) {
             buffer[0] = -1;
             buffer[1] = -1;
             diagonalPoints1 = 0;
             for (int i = 0; i < map.length; i++) {
-                if (map[i][i] == USER_SYMBOL) {
+                if (map[i][i] == symbol) {
                     diagonalPoints1 += 1;
                 } else {
                     if (diagonalPoints1 == (POINTS_FOR_WIN - range)) {
@@ -214,7 +225,7 @@ public class FourthHomeWork {
                     }
                 }
             }
-            if (XY[0] == -1 && buffer[0] != -1 && diagonalPoints1 == (POINTS_FOR_WIN - range)) {
+            if (XY[0] == -1 && buffer[0] != -1 && diagonalPoints1 == (POINTS_FOR_WIN - range) && isEmpty(buffer[0], buffer[1])) {
                 XY[0] = buffer[0];
                 XY[1] = buffer[1];
                 break;
@@ -224,7 +235,7 @@ public class FourthHomeWork {
             buffer[0] = -1;
             buffer[1] = -1;
             for (int i = 0; i < map.length; i++) {
-                if (map[i][map.length - 1 - i] == USER_SYMBOL) {
+                if (map[i][map.length - 1 - i] == symbol) {
                     diagonalPoints2 += 1;
                 } else {
                     if (diagonalPoints2 == (POINTS_FOR_WIN - range)) {
@@ -244,7 +255,7 @@ public class FourthHomeWork {
                     }
                 }
             }
-            if (XY[0] == -1 && buffer[0] != -1 && diagonalPoints2 == (POINTS_FOR_WIN - range)) {
+            if (XY[0] == -1 && buffer[0] != -1 && diagonalPoints2 == (POINTS_FOR_WIN - range) && isEmpty(buffer[0], buffer[1])) {
                 XY[0] = buffer[0];
                 XY[1] = buffer[1];
                 break;
@@ -256,7 +267,7 @@ public class FourthHomeWork {
                 buffer[0] = -1;
                 buffer[1] = -1;
                 for (int j = 0; j < map.length; j++) {
-                    if (map[i][j] == USER_SYMBOL) {
+                    if (map[i][j] == symbol) {
                         horizontalPoints += 1;
                     } else {
                         if (horizontalPoints == (POINTS_FOR_WIN - range)) {
@@ -276,7 +287,7 @@ public class FourthHomeWork {
                         }
                     }
                 }
-                if (XY[0] == -1 && buffer[0] != -1 && horizontalPoints == (POINTS_FOR_WIN - range)) {
+                if (XY[0] == -1 && buffer[0] != -1 && horizontalPoints == (POINTS_FOR_WIN - range) && isEmpty(buffer[0], buffer[1])) {
                     XY[0] = buffer[0];
                     XY[1] = buffer[1];
                     break;
@@ -286,7 +297,7 @@ public class FourthHomeWork {
                 buffer[0] = -1;
                 buffer[1] = -1;
                 for (int j = 0; j < map.length; j++) {
-                    if (map[j][i] == USER_SYMBOL) {
+                    if (map[j][i] == symbol) {
                         verticalPoints += 1;
                     } else {
                         if (verticalPoints == (POINTS_FOR_WIN - range)) {
@@ -305,7 +316,7 @@ public class FourthHomeWork {
                             buffer[1] = i;
                         }
                     }
-                    if (XY[0] == -1 && buffer[0] != -1 && verticalPoints == (POINTS_FOR_WIN - range)) {
+                    if (XY[0] == -1 && buffer[0] != -1 && verticalPoints == (POINTS_FOR_WIN - range) && isEmpty(buffer[0], buffer[1])) {
                         XY[0] = buffer[0];
                         XY[1] = buffer[1];
                         break;
