@@ -121,18 +121,22 @@ public class FourthHomeWork {
         for (int i = 0; i < map.length; i++) {
             verticalPoints = 0;
             horizontalPoints = 0;
-            if (map[i][i] == symbol) {
-                diagonalPoints1 += 1;
-            } else {
-                diagonalPoints1 = 0;
-            }
-            if (map[i][map.length - 1 - i] == symbol) {
-                diagonalPoints2 += 1;
-            } else {
-                diagonalPoints2 = 0;
-            }
-            if (diagonalPoints1 == POINTS_FOR_WIN || diagonalPoints2 == POINTS_FOR_WIN) {
-                return true;
+            diagonalPoints1 = 0;
+            diagonalPoints2 = 0;
+            for (int j = 0, k = i; k < map.length; k++, j++) {
+                if (map[k][j] == symbol) {
+                    diagonalPoints1 += 1;
+                } else {
+                    diagonalPoints1 = 0;
+                }
+                if (map[k][map.length - 1 - j] == symbol) {
+                    diagonalPoints2 += 1;
+                } else {
+                    diagonalPoints2 = 0;
+                }
+                if (diagonalPoints1 == POINTS_FOR_WIN || diagonalPoints2 == POINTS_FOR_WIN) {
+                    return true;
+                }
             }
             for (int j = 0; j < map.length; j++) {
                 if (map[i][j] == symbol) {
