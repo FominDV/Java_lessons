@@ -22,7 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a49bb96-fca1-4a94-b985-0288b7125d52" name="Default Changelist" comment="">
+    <list default="true" id="70639682-95db-4580-8dd2-dc7f0fd5cf04" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +61,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
-  <component name="RunManager" selected="Application.FifthHomeWork">
+  <component name="RunManager" selected="Application.SixthHomeWork">
     <configuration name="FifthHomeWork" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.java_core_1.homework.fomin.FifthHomeWork" />
       <module name="homework1-1" />
@@ -101,8 +101,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SixthHomeWork" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.java_core_1.homework.fomin.SixthHomeWork" />
+      <module name="homework1-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.java_core_1.homework.fomin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SixthHomeWork" />
         <item itemvalue="Application.FifthHomeWork" />
         <item itemvalue="Application.FourthHomeWork" />
         <item itemvalue="Application.FirstHomeWork" />
@@ -141,22 +155,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1598559163286" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1599807271309">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1600097719263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599807271309" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1599807271309">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600097719263" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1600097719263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599807271309" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1599807271309">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600097719263" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1600097719262">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599807271309" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1599807271309">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600097719262" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1600097719263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599807271309" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600097719263" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1599670352930">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
