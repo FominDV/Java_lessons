@@ -1,21 +1,35 @@
 package ru.java_core_1.homework.fomin;
 
 public class Animal {
-    String name;
+    private String name;
+    protected double maxDistance, maxSwimLength, maxJumpHeight;
 
-    public Animal() {
-        name = "Animal";
-    }
-
-    public Animal(String name) {
+    Animal(String name) {
         this.name = name;
     }
 
-    void swim(int length) {
-        System.out.println(name + " swam " + length + " metres");
+    private boolean isPhysicalAbility(double length, double maxLength) {
+        if (maxLength >= length) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    void run(int length) {
-        System.out.println(name + " ran " + length + " metres");
+    public String getName() {
+        return this.name;
+    }
+
+    //Methods for animal's actions
+    public boolean isRunDistance(double distance) {
+        return isPhysicalAbility(distance, maxDistance);
+    }
+
+    public boolean isSwimDistance(double swimLength) {
+        return isPhysicalAbility(swimLength, maxSwimLength);
+    }
+
+    public boolean isHighJump(double height) {
+        return isPhysicalAbility(height, maxJumpHeight);
     }
 }
