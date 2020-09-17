@@ -54,8 +54,8 @@ public class SixthHomeWork {
             if (read.hasNextDouble()) {
                 return read.nextDouble();
             } else {
-                System.out.println("It isn't decimal number!");
                 read.nextLine();
+                System.out.println("It isn't decimal number!");
             }
         } while (true);
     }
