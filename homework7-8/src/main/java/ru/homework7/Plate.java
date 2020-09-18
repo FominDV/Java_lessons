@@ -31,5 +31,7 @@ public class Plate {
 
     protected void increaseFood(int quantityFood) {
         food += quantityFood;
+        System.out.println("Plate was increased " + quantityFood + " food");
+        info();
     }
 }
