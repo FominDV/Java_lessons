@@ -28,4 +28,8 @@ public class Plate {
             food -= appetite;
         }
     }
+
+    protected void increaseFood(int quantityFood) {
+        food += quantityFood;
+    }
 }

@@ -16,7 +16,7 @@ public class Cat {
     }
 
     protected void eat(Plate plate) {
-        if (plate.isEnoughFood(appetite)) {
+        if (plate.isEnoughFood(appetite) && full == false) {
             plate.decreaseFood(appetite);
             full = true;
             System.out.println(name + " ate.");
