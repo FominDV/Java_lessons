@@ -16,14 +16,21 @@ public class Boxes extends JButton {
         symbol = 'e';
     }
 
-
-    static void setCircle(Boxes box) {
-        box.symbol = 'o';
-        box.setText("O");
+protected boolean isEmpty(){
+        if(symbol=='e'){
+            return true;
+        }else{
+            return false;
+        }
+}
+    protected void setCircle() {
+            symbol = 'o';
+            setText("O");
     }
 
-     static void setCross(Boxes box) {
-        box.symbol = 'x';
-        box.setText("X");
+     protected void setCross() {
+            symbol = 'x';
+            setText("X");
+
     }
 }

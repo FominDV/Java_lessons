@@ -25,13 +25,17 @@ public class GameWindow extends JFrame {
         add(menu, BorderLayout.NORTH);
         for (int i = 0; i < sizeOfMap; i++) {
             for (int j = 0; j < sizeOfMap; j++) {
-                boxes[i][j] = new Boxes(i, j);
-                boxes[i][j].addActionListener(new ActionListener() {
+                final Boxes box = new Boxes(i,j);
+
+                box.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        Boxes.setCross(boxes);
+                        if(box.isEmpty()) {
+                            box.setCross();
+
+                        }
                     }
                 });
-                map.add(boxes[i][j]);
+                map.add(box);
             }
         }
         add(map, BorderLayout.CENTER);
