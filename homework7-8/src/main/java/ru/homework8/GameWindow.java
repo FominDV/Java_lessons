@@ -7,9 +7,10 @@ import java.awt.event.ActionListener;
 
 
 public class GameWindow extends JFrame {
-    protected int sizeOfMap=3;
+    protected int sizeOfMap = 3;
     private int height = 800;
     private int width = 700;
+
     GameWindow() {
         super();
         setTitle("Tic-tic-toe 3x3");
@@ -18,27 +19,40 @@ public class GameWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
+
     JPanel map = new JPanel(new GridLayout(sizeOfMap, sizeOfMap));
-    Boxes boxes[]=new Boxes[sizeOfMap*sizeOfMap];
+    Boxes boxes[] = new Boxes[sizeOfMap * sizeOfMap];
     JLabel menu = new JLabel();
+
     protected void makeMap() {
         add(menu, BorderLayout.NORTH);
-        for (int i = 0; i < sizeOfMap*sizeOfMap; i++) {
-                final Boxes box = new Boxes();
-                boxes[i]=box;
-                box.setName(String.valueOf(i));
-                box.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if(boxes[Integer.parseInt(box.getName())].isEmpty()) {
-                            box.setCross();
-                            boxes[Integer.parseInt(box.getName())]=box;
-                            InterGame.machineTurn(boxes, sizeOfMap);
+        for (int i = 0; i < boxes.length; i++) {
+            final Boxes box = new Boxes();
+            box.setName(String.valueOf(i));
+            boxes[i] = box;
+            box.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (box.isEmpty()) {
+                        box.setCross();
+                        boxes[Integer.parseInt(box.getName())] = box;
+                        if (InterGame.verifyVictory(boxes, Boxes.USER)) {
+                            victory();
+                        }
+                        InterGame.machineTurn(boxes);
+                        if (InterGame.verifyVictory(boxes, Boxes.MACHINE)) {
+                            loss();
                         }
                     }
-                });
-                map.add(box);
-            }
-
+                }
+            });
+            map.add(box);
+        }
         add(map, BorderLayout.CENTER);
+    }
+    protected void victory(){
+        map.setVisible(false);
+    }
+    protected void loss(){
+        map.setVisible(false);
     }
 }

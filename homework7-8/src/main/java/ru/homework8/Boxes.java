@@ -6,26 +6,39 @@ import java.awt.*;
 
 public class Boxes extends JButton {
     protected char symbol;
+    static final char EMPTY = 'e';
+    static final char USER = 'X';
+    static final char MACHINE = 'O';
+
     //'e' is 'empty'
-Boxes(){
-    setFont(new Font("SANS_SERIF", Font.BOLD,200));
-    symbol='e';
-}
-protected boolean isEmpty(){
-        if(symbol=='e'){
-            return true;
-        }else{
-            return false;
-        }
-}
-    protected void setCircle() {
-            symbol = 'o';
-            setText("O");
+    Boxes() {
+        setFont(new Font("SANS_SERIF", Font.BOLD, 200));
+        symbol = EMPTY;
     }
 
-     protected void setCross() {
-            symbol = 'x';
-            setText("X");
+    protected boolean isEmpty() {
+        if (symbol == EMPTY) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    protected void setCircle() {
+        symbol = MACHINE;
+        setText(String.valueOf(MACHINE));
+    }
+
+    protected void setCross() {
+        symbol = USER;
+        setText(String.valueOf(USER));
+    }
+
+    protected boolean isSymbol(char symbol) {
+        if (this.symbol == symbol) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
