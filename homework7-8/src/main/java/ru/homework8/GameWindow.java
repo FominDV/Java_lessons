@@ -18,27 +18,27 @@ public class GameWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    protected Boxes[][] boxes=new Boxes[sizeOfMap][sizeOfMap];
     JPanel map = new JPanel(new GridLayout(sizeOfMap, sizeOfMap));
+    Boxes boxes[]=new Boxes[sizeOfMap*sizeOfMap];
     JLabel menu = new JLabel();
     protected void makeMap() {
         add(menu, BorderLayout.NORTH);
-        for (int i = 0; i < sizeOfMap; i++) {
-            for (int j = 0; j < sizeOfMap; j++) {
-                final Boxes box = new Boxes(i,j);
-
+        for (int i = 0; i < sizeOfMap*sizeOfMap; i++) {
+                final Boxes box = new Boxes();
+                boxes[i]=box;
+                box.setName(String.valueOf(i));
                 box.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        if(box.isEmpty()) {
+                        if(boxes[Integer.parseInt(box.getName())].isEmpty()) {
                             box.setCross();
-
+                            boxes[Integer.parseInt(box.getName())]=box;
+                            InterGame.machineTurn(boxes, sizeOfMap);
                         }
                     }
                 });
                 map.add(box);
             }
-        }
+
         add(map, BorderLayout.CENTER);
     }
-
 }

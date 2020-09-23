@@ -5,17 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Boxes extends JButton {
-    private int x, y;
-    private char symbol;
-
+    protected char symbol;
     //'e' is 'empty'
-    Boxes(int x, int y) {
-        setFont( new Font("SANS_SERIF",Font.BOLD,200));
-        this.x = x;
-        this.y = y;
-        symbol = 'e';
-    }
-
+Boxes(){
+    setFont(new Font("SANS_SERIF", Font.BOLD,200));
+    symbol='e';
+}
 protected boolean isEmpty(){
         if(symbol=='e'){
             return true;
