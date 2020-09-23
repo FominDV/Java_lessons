@@ -37,15 +37,13 @@ public class GameWindow extends JFrame {
                         boxes[Integer.parseInt(box.getName())] = box;
                         if (InterGame.isVictory(boxes, Boxes.USER)) {
                             endGame("VICTORY");
-                        }
-                        if (InterGame.isFullMap(boxes)) {
+                        }else if (InterGame.isFullMap(boxes)) {
                             endGame("draw game");
                         } else {
                             InterGame.machineTurn(boxes);
                             if (InterGame.isVictory(boxes, Boxes.MACHINE)) {
                                 endGame("LOSS");
-                            }
-                            if (InterGame.isFullMap(boxes)) {
+                            }else if (InterGame.isFullMap(boxes)) {
                                 endGame("draw game");
                             }
                         }
