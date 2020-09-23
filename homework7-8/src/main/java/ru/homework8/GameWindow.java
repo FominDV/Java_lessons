@@ -35,12 +35,19 @@ public class GameWindow extends JFrame {
                     if (box.isEmpty()) {
                         box.setCross();
                         boxes[Integer.parseInt(box.getName())] = box;
-                        if (InterGame.verifyVictory(boxes, Boxes.USER)) {
-                            victory();
+                        if (InterGame.isVictory(boxes, Boxes.USER)) {
+                            endGame("VICTORY");
                         }
-                        InterGame.machineTurn(boxes);
-                        if (InterGame.verifyVictory(boxes, Boxes.MACHINE)) {
-                            loss();
+                        if (InterGame.isFullMap(boxes)) {
+                            endGame("draw game");
+                        } else {
+                            InterGame.machineTurn(boxes);
+                            if (InterGame.isVictory(boxes, Boxes.MACHINE)) {
+                                endGame("LOSS");
+                            }
+                            if (InterGame.isFullMap(boxes)) {
+                                endGame("draw game");
+                            }
                         }
                     }
                 }
@@ -49,10 +56,39 @@ public class GameWindow extends JFrame {
         }
         add(map, BorderLayout.CENTER);
     }
-    protected void victory(){
+
+    JLabel ending = new JLabel();
+    JPanel endButtons = new JPanel(new GridLayout(1, 2));
+    Font endText = new Font("SANS_SERIF", Font.BOLD, 100);
+    Font endButton = new Font("SANS_SERIF", Font.BOLD, 60);
+    JButton exit = new JButton("Exit");
+    JButton restart = new JButton("Restart");
+
+    protected void endGame(String word) {
         map.setVisible(false);
+        ending.setFont(endText);
+        menu.setText(null);
+        ending.setHorizontalAlignment(SwingConstants.CENTER);
+        ending.setText(word);
+        add(ending, BorderLayout.CENTER);
+        exit.setFont(endButton);
+        restart.setFont(endButton);
+        setActionsEndingButtons();
+        endButtons.add(exit);
+        endButtons.add(restart);
+        add(endButtons, BorderLayout.SOUTH);
     }
-    protected void loss(){
-        map.setVisible(false);
+
+    protected void setActionsEndingButtons() {
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        restart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Main.newGame();
+            }
+        });
     }
 }
