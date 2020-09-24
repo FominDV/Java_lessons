@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 
 public class GameWindow extends JFrame {
-    protected static int sizeOfMap = 5;
+    protected static int sizeOfMap = 9;
     private int height = 1000;
     private int width = 1000;
 
