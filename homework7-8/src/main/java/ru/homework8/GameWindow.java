@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 
 
 public class GameWindow extends JFrame {
-    protected static int sizeOfMap = 9;
+    protected static int sizeOfMap = 7;
     private int height = 1000;
     private int width = 1000;
 
     GameWindow() {
         super();
-        setTitle("Tic-tic-toe 3x3");
+        setTitle("Tic-tic-toe by Dmitriy Fomin");
         setSize(width, height);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

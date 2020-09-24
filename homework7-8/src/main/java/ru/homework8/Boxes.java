@@ -33,6 +33,9 @@ public class Boxes extends JButton {
         symbol = USER;
         setText(String.valueOf(USER));
     }
+    protected void setColor(){
+        setBackground(Color.RED);
+    }
 
     protected boolean isSymbol(char symbol) {
         if (this.symbol == symbol) {

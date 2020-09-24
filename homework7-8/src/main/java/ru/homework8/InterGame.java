@@ -45,7 +45,10 @@ public class InterGame {
         for (int j = 0; j < boxes.length; j++) {
             if (boxes[i][j].isSymbol(symbol)) {
                 pointsHorizontal++;
-                if (pointsHorizontal == pointsToWin) return true;
+                if (pointsHorizontal == pointsToWin) {
+                    setHorizontalColor(boxes, i, j, symbol);
+                    return true;
+                }
             } else {
                 pointsHorizontal = 0;
             }
@@ -75,16 +78,16 @@ public class InterGame {
                 if ((i + j) < boxes.length && boxes[j][j + i].isSymbol(symbol)) {
                     pointsMainDiagonal2++;
                     if (pointsMainDiagonal2 == pointsToWin) return true;
-                }else{
-                    pointsMainDiagonal2=0;
+                } else {
+                    pointsMainDiagonal2 = 0;
                 }
-                if ((i + j) < boxes.length && boxes[i + j][boxes.length - j-1].isSymbol(symbol)) {
+                if ((i + j) < boxes.length && boxes[i + j][boxes.length - j - 1].isSymbol(symbol)) {
                     pointsSecondaryDiagonal1++;
                     if (pointsSecondaryDiagonal1 == pointsToWin) return true;
                 } else {
                     pointsSecondaryDiagonal1 = 0;
                 }
-                if ((i + j) < boxes.length && boxes[j][boxes.length - j - i-1].isSymbol(symbol)) {
+                if ((i + j) < boxes.length && boxes[j][boxes.length - j - i - 1].isSymbol(symbol)) {
                     pointsSecondaryDiagonal2++;
                     if (pointsSecondaryDiagonal2 == pointsToWin) return true;
                 } else {
@@ -93,5 +96,20 @@ public class InterGame {
             }
         }
         return false;
+    }
+
+    private static void setHorizontalColor(Boxes[][] boxes, int i, int j, char symbol) {
+        for (int k = 0; k < pointsToWin; k++) {
+            boxes[i][j - k].setColor();
+        }
+        int k = 1;
+        while (true) {
+            if ((j + k) < boxes.length && boxes[i][j + k].isSymbol(symbol)) {
+                boxes[i][j + k].setColor();
+                k++;
+            }else{
+                break;
+            }
+        }
     }
 }
