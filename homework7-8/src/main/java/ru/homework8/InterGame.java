@@ -54,7 +54,10 @@ public class InterGame {
             }
             if (boxes[j][i].isSymbol(symbol)) {
                 pointsVertical++;
-                if (pointsVertical == pointsToWin) return true;
+                if (pointsVertical == pointsToWin) {
+                    setVerticalColor(boxes, i, j, symbol);
+                    return true;
+                }
             } else {
                 pointsVertical = 0;
             }
@@ -71,25 +74,37 @@ public class InterGame {
             for (int j = 0; j < boxes.length; j++) {
                 if ((i + j) < boxes.length && boxes[i + j][j].isSymbol(symbol)) {
                     pointsMainDiagonal1++;
-                    if (pointsMainDiagonal1 == pointsToWin) return true;
+                    if (pointsMainDiagonal1 == pointsToWin) {
+                        setMainDiagonalColor(boxes, (i + j), j, symbol);
+                        return true;
+                    }
                 } else {
                     pointsMainDiagonal1 = 0;
                 }
                 if ((i + j) < boxes.length && boxes[j][j + i].isSymbol(symbol)) {
                     pointsMainDiagonal2++;
-                    if (pointsMainDiagonal2 == pointsToWin) return true;
+                    if (pointsMainDiagonal2 == pointsToWin) {
+                        setMainDiagonalColor(boxes, j, (j + i), symbol);
+                        return true;
+                    }
                 } else {
                     pointsMainDiagonal2 = 0;
                 }
                 if ((i + j) < boxes.length && boxes[i + j][boxes.length - j - 1].isSymbol(symbol)) {
                     pointsSecondaryDiagonal1++;
-                    if (pointsSecondaryDiagonal1 == pointsToWin) return true;
+                    if (pointsSecondaryDiagonal1 == pointsToWin) {
+                        setSecondaryDiagonalColor(boxes, (i + j), (boxes.length - j - 1), symbol);
+                        return true;
+                    }
                 } else {
                     pointsSecondaryDiagonal1 = 0;
                 }
                 if ((i + j) < boxes.length && boxes[j][boxes.length - j - i - 1].isSymbol(symbol)) {
                     pointsSecondaryDiagonal2++;
-                    if (pointsSecondaryDiagonal2 == pointsToWin) return true;
+                    if (pointsSecondaryDiagonal2 == pointsToWin) {
+                        setSecondaryDiagonalColor(boxes, j, (boxes.length - j - i - 1), symbol);
+                        return true;
+                    }
                 } else {
                     pointsSecondaryDiagonal2 = 0;
                 }
@@ -107,7 +122,52 @@ public class InterGame {
             if ((j + k) < boxes.length && boxes[i][j + k].isSymbol(symbol)) {
                 boxes[i][j + k].setColor();
                 k++;
-            }else{
+            } else {
+                break;
+            }
+        }
+    }
+
+    private static void setVerticalColor(Boxes[][] boxes, int i, int j, char symbol) {
+        for (int k = 0; k < pointsToWin; k++) {
+            boxes[j - k][i].setColor();
+        }
+        int k = 1;
+        while (true) {
+            if ((j + k) < boxes.length && boxes[j + k][i].isSymbol(symbol)) {
+                boxes[j + k][i].setColor();
+                k++;
+            } else {
+                break;
+            }
+        }
+    }
+
+    private static void setMainDiagonalColor(Boxes[][] boxes, int i, int j, char symbol) {
+        for (int k = 0; k < pointsToWin; k++) {
+            boxes[i - k][j - k].setColor();
+        }
+        int k = 1;
+        while (true) {
+            if ((i + k) < boxes.length && (j + k) < boxes.length && boxes[i + k][j + k].isSymbol(symbol)) {
+                boxes[i + k][j + k].setColor();
+                k++;
+            } else {
+                break;
+            }
+        }
+    }
+
+    private static void setSecondaryDiagonalColor(Boxes[][] boxes, int i, int j, char symbol) {
+        for (int k = 0; k < pointsToWin; k++) {
+            boxes[i - k][j + k].setColor();
+        }
+        int k = 1;
+        while (true) {
+            if ((i + k) < boxes.length && (j - k) >= 0 && boxes[i + k][j - k].isSymbol(symbol)) {
+                boxes[i + k][j - k].setColor();
+                k++;
+            } else {
                 break;
             }
         }
