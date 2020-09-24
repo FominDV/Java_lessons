@@ -12,7 +12,7 @@ public class Boxes extends JButton {
 
     //'e' is 'empty'
     Boxes() {
-        setFont(new Font("SANS_SERIF", Font.BOLD, 200));
+        setFont(new Font("SANS_SERIF", Font.BOLD, 200*3/(GameWindow.sizeOfMap+1)));
         symbol = EMPTY;
     }
 

@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 
 public class GameWindow extends JFrame {
-    protected int sizeOfMap = 3;
-    private int height = 800;
-    private int width = 700;
+    protected static int sizeOfMap = 5;
+    private int height = 1000;
+    private int width = 1000;
 
     GameWindow() {
         super();
@@ -18,41 +18,43 @@ public class GameWindow extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+        makeMap();
     }
 
     JPanel map = new JPanel(new GridLayout(sizeOfMap, sizeOfMap));
-    Boxes boxes[] = new Boxes[sizeOfMap * sizeOfMap];
-    JLabel menu = new JLabel();
-
+    Boxes boxes[][] = new Boxes[sizeOfMap][sizeOfMap];
     protected void makeMap() {
-        add(menu, BorderLayout.NORTH);
         for (int i = 0; i < boxes.length; i++) {
-            final Boxes box = new Boxes();
-            box.setName(String.valueOf(i));
-            boxes[i] = box;
-            box.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if (box.isEmpty()) {
-                        box.setCross();
-                        boxes[Integer.parseInt(box.getName())] = box;
-                        if (InterGame.isVictory(boxes, Boxes.USER)) {
-                            endGame("VICTORY");
-                        }
-                        if (InterGame.isFullMap(boxes)) {
-                            endGame("draw game");
-                        } else {
-                            InterGame.machineTurn(boxes);
-                            if (InterGame.isVictory(boxes, Boxes.MACHINE)) {
-                                endGame("LOSS");
+            for (int j = 0; j < boxes.length; j++) {
+                final Boxes box = new Boxes();
+                box.setName(i+""+j);
+                boxes[i][j] = box;
+                box.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        if (box.isEmpty()) {
+                            box.setCross();
+                            boxes[Character.getNumericValue(box.getName().charAt(0))][Character.getNumericValue(box.getName().charAt(1))] = box;
+                            if (InterGame.isVictory(boxes, Boxes.USER)) {
+                                JOptionPane.showMessageDialog(null,"It was last turn!");
+                                endGame("VICTORY");
                             }
                             if (InterGame.isFullMap(boxes)) {
                                 endGame("draw game");
+                            } else {
+                                InterGame.machineTurn(boxes);
+                                if (InterGame.isVictory(boxes, Boxes.MACHINE)) {
+                                    JOptionPane.showMessageDialog(null,"It was last turn!");
+                                    endGame("LOSS");
+                                }
+                                if (InterGame.isFullMap(boxes)) {
+                                    endGame("draw game");
+                                }
                             }
                         }
                     }
-                }
-            });
-            map.add(box);
+                });
+                map.add(box);
+            }
         }
         add(map, BorderLayout.CENTER);
     }
@@ -67,7 +69,6 @@ public class GameWindow extends JFrame {
     protected void endGame(String word) {
         map.setVisible(false);
         ending.setFont(endText);
-        menu.setText(null);
         ending.setHorizontalAlignment(SwingConstants.CENTER);
         ending.setText(word);
         add(ending, BorderLayout.CENTER);
