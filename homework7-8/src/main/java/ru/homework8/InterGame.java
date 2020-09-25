@@ -1,22 +1,18 @@
 package ru.homework8;
 
-import java.util.Random;
-
 public class InterGame {
-    static Random random = new Random();
-    private static int pointsToWin = 3;
-
-    static void machineTurn(Boxes[][] boxes) {
-        while (true) {
-            int numberOfBoxX = random.nextInt(boxes.length);
-            int numberOfBoxY = random.nextInt(boxes.length);
-            if (boxes[numberOfBoxX][numberOfBoxY].isEmpty()) {
-                boxes[numberOfBoxX][numberOfBoxY].setCircle();
+    private static int pointsToWin = 4;
+    private static int levelAI=1;
+    protected static void machineTurn(Boxes[][] boxes){
+        switch (levelAI){
+            case 0:
+                ArtificialIntelligenceLevel0.turnAI0(boxes);
                 break;
-            }
+            case 1:
+                ArtificialIntelligenceLevel1.turnAI1(boxes, pointsToWin);
+                break;
         }
     }
-
     static boolean isFullMap(Boxes[][] boxes) {
         for (int i = 0; i < boxes.length; i++) {
             for (int j = 0; j < boxes.length; j++) {
