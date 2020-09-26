@@ -9,10 +9,10 @@ public class Boxes extends JButton {
     static final char EMPTY = 'e';
     static final char USER = 'X';
     static final char MACHINE = 'O';
-
+    private static int SIZE_OF_TEXT_INTO_BOX = (int) (GameWindow.height/(GameWindow.sizeOfMap*2));
     //'e' is 'empty'
     Boxes() {
-        setFont(new Font("SANS_SERIF", Font.BOLD, 200*3/(GameWindow.sizeOfMap+1)));
+        setFont(new Font("SANS_SERIF", Font.BOLD, SIZE_OF_TEXT_INTO_BOX));
         symbol = EMPTY;
     }
 
@@ -33,7 +33,8 @@ public class Boxes extends JButton {
         symbol = USER;
         setText(String.valueOf(USER));
     }
-    protected void setColor(){
+
+    protected void setColor() {
         setBackground(Color.RED);
     }
 

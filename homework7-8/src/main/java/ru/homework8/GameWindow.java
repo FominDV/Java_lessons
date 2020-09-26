@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 
 public class GameWindow extends JFrame {
-    protected static int sizeOfMap = 7;
-    private int height = 1000;
-    private int width = 1000;
+    protected static int sizeOfMap = 10;
+    protected static int height = 1000;
+    protected static int width = 1000;
 
     GameWindow() {
         super();
@@ -39,6 +39,7 @@ public class GameWindow extends JFrame {
                                 endGame("VICTORY");
                             }
                             if (InterGame.isFullMap(boxes)) {
+                                JOptionPane.showMessageDialog(null,"It was last turn!");
                                 endGame("draw game");
                             } else {
                                 InterGame.machineTurn(boxes);
@@ -47,6 +48,7 @@ public class GameWindow extends JFrame {
                                     endGame("LOSS");
                                 }
                                 if (InterGame.isFullMap(boxes)) {
+                                    JOptionPane.showMessageDialog(null,"It was last turn!");
                                     endGame("draw game");
                                 }
                             }

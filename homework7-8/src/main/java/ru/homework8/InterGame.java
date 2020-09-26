@@ -1,7 +1,7 @@
 package ru.homework8;
 
 public class InterGame {
-    private static int pointsToWin = 4;
+    private static int pointsToWin = 10;
     private static int levelAI=1;
     protected static void machineTurn(Boxes[][] boxes){
         switch (levelAI){
