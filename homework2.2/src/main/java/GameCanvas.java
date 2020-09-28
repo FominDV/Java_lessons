@@ -23,7 +23,7 @@ public class GameCanvas extends JPanel {
         float deltaTime = (currentTime - lastFrameTime) * 0.000000001f;
         lastFrameTime = currentTime;
         gameController.onDrawFrame(this, g, deltaTime);
-        BackgroundOfCanvas bg = new BackgroundOfCanvas(this);
+        new BackgroundOfCanvas(this);
         try {
             Thread.sleep(16);
         } catch (InterruptedException e) {
