@@ -1,11 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class GameCanvas extends JPanel {
 
     long lastFrameTime;
     MainCircles gameController;
     GameCanvas(MainCircles gameController) {
+        this.addMouseListener(new MouseActions(gameController));
         lastFrameTime = System.nanoTime();
         this.gameController = gameController;
     }

@@ -13,6 +13,12 @@ public class Ball extends Sprite {
         halfHeight = 20 + (float)(Math.random() * 50f);
         halfWidth = halfHeight;
     }
+    Ball(int x, int y){
+        halfHeight = 20 + (float)(Math.random() * 50f);
+        halfWidth = halfHeight;
+        this.x=x;
+        this.y=y;
+    }
 
     @Override
     void update(GameCanvas canvas, float deltaTime) {
