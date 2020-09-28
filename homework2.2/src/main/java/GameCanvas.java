@@ -5,11 +5,11 @@ public class GameCanvas extends JPanel {
 
     long lastFrameTime;
     MainCircles gameController;
-
     GameCanvas(MainCircles gameController) {
         lastFrameTime = System.nanoTime();
         this.gameController = gameController;
     }
+
 
     @Override
     protected void paintComponent(Graphics g) {  // while (true) {
@@ -18,6 +18,7 @@ public class GameCanvas extends JPanel {
         float deltaTime = (currentTime - lastFrameTime) * 0.000000001f;
         lastFrameTime = currentTime;
         gameController.onDrawFrame(this, g, deltaTime);
+        BackgroundOfCanvas bg = new BackgroundOfCanvas(this);
         try {
             Thread.sleep(16);
         } catch (InterruptedException e) {
