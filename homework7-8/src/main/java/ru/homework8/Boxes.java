@@ -16,6 +16,15 @@ public class Boxes extends JButton {
         symbol = EMPTY;
     }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2 =(Graphics2D)g;
+        g2.setColor(Color.RED);
+        g2.setStroke(new BasicStroke(10f));
+        g2.drawOval(30,30,30,30);
+    }
+
     protected boolean isEmpty() {
         if (symbol == EMPTY) {
             return true;
