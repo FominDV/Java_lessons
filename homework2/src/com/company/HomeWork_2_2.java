@@ -14,9 +14,9 @@ public class HomeWork_2_2 {
         try {
             ProcessingString.processingString(LINE);
         } catch (SizeOfStringArrayException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         } catch (ConvertStringArrayToIntArrayException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
         System.out.println("\nEnter string, between values must be spaces:");
@@ -27,9 +27,10 @@ public class HomeWork_2_2 {
         try {
             ProcessingString.processingString(userLine);
         } catch (SizeOfStringArrayException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         } catch (ConvertStringArrayToIntArrayException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }
