@@ -17,7 +17,7 @@ public class ProcessingString {
         return stringSecondArr;
     }
 
-    static int[][] convertStringArrToIntArr(String[][] stringArr) throws NumberFormatException {
+    static int[][] convertStringArrToIntArr(String[][] stringArr) throws ConvertStringArrayToIntArrayException {
         int[][] intArr = new int[stringArr.length][];
         for (int i = 0; i < stringArr.length; i++) {
             intArr[i] = new int[stringArr[i].length];
@@ -25,7 +25,7 @@ public class ProcessingString {
                 try {
                     intArr[i][j] = Integer.parseInt(stringArr[i][j]);
                 } catch (NumberFormatException e) {
-                    throw e;
+                    throw new ConvertStringArrayToIntArrayException(e.getStackTrace());
                 }
             }
         }
@@ -46,7 +46,7 @@ public class ProcessingString {
         return sum / 2;
     }
 
-    static void processingString(String line) throws SizeOfStringArrayException, NumberFormatException {
+    static void processingString(String line) throws SizeOfStringArrayException, ConvertStringArrayToIntArrayException {
         System.out.println("String array[][]:");
         try {
             getStringDoubleArr(line);

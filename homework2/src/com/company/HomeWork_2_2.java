@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class HomeWork_2_2 {
-    private static final String LINE = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 0 5";
+    private static final String LINE = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 0";
     private static String userLine = "";
 
     public static void main(String[] args) {
@@ -15,8 +15,9 @@ public class HomeWork_2_2 {
             ProcessingString.processingString(LINE);
         } catch (SizeOfStringArrayException e) {
             System.out.println(e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("2");
+        } catch (ConvertStringArrayToIntArrayException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         System.out.println("\nEnter string, between values must be spaces:");
         for (int i = 1; i <= 4; i++) {
@@ -27,8 +28,8 @@ public class HomeWork_2_2 {
             ProcessingString.processingString(userLine);
         } catch (SizeOfStringArrayException e) {
             System.out.println(e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("2");
+        } catch (ConvertStringArrayToIntArrayException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
