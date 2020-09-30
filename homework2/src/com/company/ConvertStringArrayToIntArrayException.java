@@ -9,6 +9,7 @@ public class ConvertStringArrayToIntArrayException extends NumberFormatException
     }
 
     public void printStackTrace() {
+        System.err.println("StackTrace:");
         for (StackTraceElement element : stackTrace) {
             System.err.println(element);
         }
