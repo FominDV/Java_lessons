@@ -3,18 +3,16 @@ package com.company;
 import java.util.Arrays;
 
 public class ProcessingString {
-    ProcessingString(String line){
-        processingString(line);
-    }
-    static String[][] getStringDoubleArr(String line) throws IndexOutOfBoundsException {
+
+    static String[][] getStringDoubleArr(String line) throws SizeOfStringArrayException {
         String[] stringFirstArr = line.split("\n");
         String[][] stringSecondArr = new String[stringFirstArr.length][];
         for (int i = 0; i < stringFirstArr.length; i++) {
             stringSecondArr[i] = stringFirstArr[i].split(" ");
         }
-        if (stringSecondArr.length != 4) throw new IndexOutOfBoundsException();
+        if (stringFirstArr.length != 4) throw new SizeOfStringArrayException(stringFirstArr.length, 4, 4);
         for (String[] singleStringArray : stringSecondArr) {
-            if (singleStringArray.length != 4) throw new IndexOutOfBoundsException();
+            if (singleStringArray.length != 4) throw new SizeOfStringArrayException(singleStringArray.length, 4, 4);
         }
         return stringSecondArr;
     }
@@ -48,11 +46,11 @@ public class ProcessingString {
         return sum / 2;
     }
 
-    static void processingString(String line) throws IndexOutOfBoundsException, NumberFormatException {
+    static void processingString(String line) throws SizeOfStringArrayException, NumberFormatException {
         System.out.println("String array[][]:");
         try {
             getStringDoubleArr(line);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (SizeOfStringArrayException e) {
             throw e;
         }
         String[][] stringArr = getStringDoubleArr(line);
@@ -60,7 +58,7 @@ public class ProcessingString {
             System.out.print(Arrays.toString(arr) + "\n");
         }
         System.out.println("Integer array[][]:");
-            convertStringArrToIntArr(stringArr);
+        convertStringArrToIntArr(stringArr);
         int[][] intArr = convertStringArrToIntArr(stringArr);
         for (int[] arr : intArr) {
             System.out.print(Arrays.toString(arr) + "\n");
