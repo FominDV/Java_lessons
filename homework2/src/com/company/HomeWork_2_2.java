@@ -3,7 +3,7 @@ package com.company;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class HomeWork_2_2 {
+public class HomeWork_2_2 extends ProcessingString {
     private static final String LINE = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 0";
     private static String userLine = "";
 
@@ -12,7 +12,7 @@ public class HomeWork_2_2 {
 
         System.out.println("Start line:\n" + LINE);
         try {
-            ProcessingString.processingString(LINE);
+            processingString(LINE);
         } catch (SizeOfStringArrayException e) {
             System.err.println(e.getMessage());
         } catch (ConvertStringArrayToIntArrayException e) {
@@ -25,7 +25,7 @@ public class HomeWork_2_2 {
             userLine += read.nextLine() + "\n";
         }
         try {
-            ProcessingString.processingString(userLine);
+            processingString(userLine);
         } catch (SizeOfStringArrayException e) {
             System.err.println(e.getMessage());
         } catch (ConvertStringArrayToIntArrayException e) {
