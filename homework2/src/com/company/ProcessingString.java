@@ -5,12 +5,11 @@ import java.util.Arrays;
 public class ProcessingString {
 
     static String[][] getStringDoubleArr(String line) throws SizeOfStringArrayException {
-        String[] stringFirstArr = line.split("\n");
-        String[][] stringSecondArr = new String[stringFirstArr.length][];
-        for (int i = 0; i < stringFirstArr.length; i++) {
-            stringSecondArr[i] = stringFirstArr[i].split(" ");
+        String[][] stringSecondArr = new String[line.split("\n").length][];
+        for (int i = 0; i < line.split("\n").length; i++) {
+            stringSecondArr[i] = line.split("\n")[i].split(" ");
         }
-        if (stringFirstArr.length != 4) throw new SizeOfStringArrayException(stringFirstArr.length, 4, 4);
+        if (line.split("\n").length != 4) throw new SizeOfStringArrayException(line.split("\n").length, 4, 4);
         for (String[] singleStringArray : stringSecondArr) {
             if (singleStringArray.length != 4) throw new SizeOfStringArrayException(singleStringArray.length, 4, 4);
         }
