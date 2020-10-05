@@ -12,6 +12,10 @@ public class Person {
         this.firstName = firstName;
         this.secondName = secondName;
     }
+    Person(String firstName) {
+        this.firstName = firstName;
+        secondName = "unknown";
+    }
 
     @Override
     public boolean equals(Object o) {

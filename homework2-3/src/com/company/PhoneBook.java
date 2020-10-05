@@ -38,20 +38,20 @@ public class PhoneBook {
         return persons;
     }
 
-    static ArrayList<String> getPhonesList(String firstName) {
+    static ArrayList<String> getPhonesList(Person person) {
         ArrayList<String> phonesList = new ArrayList<>();
         for (Map.Entry<Person, ArrayList<String>> entryPhone : phoneAndEmail.entrySet()) {
-            if (entryPhone.getKey().getFirstName().equals(firstName)) {
+            if (entryPhone.getKey().equals(person)) {
                 phonesList.add(entryPhone.getValue().get(0));
             }
         }
         return phonesList;
     }
 
-    static ArrayList<String> getEmailList(String firstName) {
+    static ArrayList<String> getEmailList(Person person) {
         ArrayList<String> emailList = new ArrayList<>();
         for (Map.Entry<Person, ArrayList<String>> entryEmail : phoneAndEmail.entrySet()) {
-            if (entryEmail.getKey().getFirstName().equals(firstName)) {
+            if (entryEmail.getKey().equals(person)) {
                 emailList.add(entryEmail.getValue().get(1));
             }
         }

@@ -57,14 +57,14 @@ public class Main {
     static void printPhones(PhoneBook phoneBook) {
         Set<String> persons = getPersonFirstNames(phoneBook);
         for (String personFirstName : persons) {
-            System.out.println(personFirstName + "'s phones: " + phoneBook.getPhonesList(personFirstName));
+            System.out.println(personFirstName + "'s phones: " + phoneBook.getPhonesList(new Person(personFirstName)));
         }
     }
 
     static void printEmail(PhoneBook phoneBook) {
         Set<String> persons = getPersonFirstNames(phoneBook);
         for (String personFirstName : persons) {
-            System.out.println(personFirstName + "'s email: " + phoneBook.getEmailList(personFirstName));
+            System.out.println(personFirstName + "'s email: " + phoneBook.getEmailList(new Person(personFirstName)));
         }
     }
 
@@ -84,8 +84,8 @@ public class Main {
             if (firstNameEnteredByUser.equals("0")) {
                 break;
             } else {
-                System.out.println(phoneBook.getPhonesList(firstNameEnteredByUser));
-                System.out.println(phoneBook.getEmailList(firstNameEnteredByUser));
+                System.out.println(phoneBook.getPhonesList(new Person(firstNameEnteredByUser)));
+                System.out.println(phoneBook.getEmailList(new Person(firstNameEnteredByUser)));
             }
 
         }
