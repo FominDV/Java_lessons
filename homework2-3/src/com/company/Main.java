@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Main {
     static final String[] UNIQUE_WORDS = {"apple", "sap", "beer", "cash", "summer", "bus", "next", "people", "length", "data", "circle", "monkey", "master"};
+    static Scanner read = new Scanner(System.in);
+    static PhoneBook phoneBook = new PhoneBook();
 
     public static void main(String[] args) {
         //Task 1
@@ -15,13 +17,12 @@ public class Main {
         System.out.println("List of the unique words:\n" + listWords);
         quantityOfRepetition(generateMapOfWords(listWords, words));
         //Task 2
-        PhoneBook phoneBook = new PhoneBook();
         System.out.println();
         printPhones(phoneBook);
         System.out.println();
         printEmail(phoneBook);
-
-
+        System.out.println();
+        userChangeFirstName();
     }
 
     static String[] generateArrayOfWords(int size, String[] basicWords) {
@@ -59,17 +60,34 @@ public class Main {
             System.out.println(personFirstName + "'s phones: " + phoneBook.getPhonesList(personFirstName));
         }
     }
-    static void printEmail(PhoneBook phoneBook){
+
+    static void printEmail(PhoneBook phoneBook) {
         Set<String> persons = getPersonFirstNames(phoneBook);
         for (String personFirstName : persons) {
             System.out.println(personFirstName + "'s email: " + phoneBook.getEmailList(personFirstName));
         }
     }
-    static Set<String> getPersonFirstNames(PhoneBook phoneBook){
-        Set<String> persons=new HashSet<>();
+
+    static Set<String> getPersonFirstNames(PhoneBook phoneBook) {
+        Set<String> persons = new HashSet<>();
         for (int i = 0; i < phoneBook.getGeneratedPersons().length; i++) {
             persons.add(phoneBook.generatePersons()[i].getFirstName());
         }
         return persons;
+    }
+
+    static void userChangeFirstName() {
+        String firstNameEnteredByUser;
+        while (true) {
+            System.out.println("Enter '0' for exit\nEnter Firstname: from " + getPersonFirstNames(phoneBook));
+            firstNameEnteredByUser = read.nextLine();
+            if (firstNameEnteredByUser.equals("0")) {
+                break;
+            } else {
+                System.out.println(phoneBook.getPhonesList(firstNameEnteredByUser));
+                System.out.println(phoneBook.getEmailList(firstNameEnteredByUser));
+            }
+
+        }
     }
 }
