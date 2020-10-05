@@ -1,13 +1,10 @@
 package com.company;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PhoneBook {
-    static Map<Person, ArrayList<String>> phoneAndEmail = new HashMap<>();
+    static HashMap<String, ArrayList<ArrayList<String>>> contacts = new HashMap<>();
 
     PhoneBook() {
         initialisation();
@@ -15,8 +12,29 @@ public class PhoneBook {
 
     static void initialisation() {
         Person[] persons = generatePersons();
+        Arrays.sort(persons);
+        int hashFirstName = 0;
         for (int i = 0; i < persons.length; i++) {
-            phoneAndEmail.put(persons[i], new ArrayList<>(Arrays.asList("74953334" + i + i / 2 + i, "mail" + i + i / 2 + i + "@yandex.ru")));
+            ArrayList<String> phone = new ArrayList<>();
+            ArrayList<String> email = new ArrayList<>();
+            if (persons[i].getHashFirstName() == hashFirstName) {
+                for (int j=0;j< persons.length;j++) {
+                    if (persons[j].getHashFirstName() == hashFirstName) {
+                        phone.add(persons[j].getPhone());
+                        email.add(persons[j].getEmail());
+                    }
+                }
+                ArrayList<ArrayList<String>> bufferContacts = new ArrayList<>();
+                bufferContacts.add(phone);
+                bufferContacts.add(email);
+                contacts.put(persons[i].getFirstName(), bufferContacts);
+            }else {
+                phone.add(persons[i].getPhone());
+                email.add(persons[i].getEmail());
+                contacts.put(persons[i].getFirstName(), new ArrayList<>(Arrays.asList(phone, email)));
+                hashFirstName=persons[i].getHashFirstName();
+            }
+
         }
     }
 
@@ -26,35 +44,33 @@ public class PhoneBook {
 
     static Person[] generatePersons() {
         Person[] persons = new Person[9];
-        persons[0] = new Person("Ivanov", "Oleg");
-        persons[1] = new Person("Belov", "Oleg");
-        persons[2] = new Person("Ivanov", "Mike");
-        persons[3] = new Person("Galinova", "Olga");
-        persons[4] = new Person("Galinova", "Oksana");
-        persons[5] = new Person("Garova", "Viktoria");
-        persons[6] = new Person("Ivanov", "Peter");
-        persons[7] = new Person("Sandrova", "Maria");
-        persons[8] = new Person("Fomina", "Sofia");
+        persons[0] = new Person("Ivanov", "Oleg", "74953334102", "mailrrr@yandex.ru");
+        persons[1] = new Person("Gunonov", "Oleg", "74953334453", "mail4453@yandex.ru");
+        persons[2] = new Person("Ivanov", "Mike", "74953334222", "mail212@yandex.ru");
+        persons[3] = new Person("Galinova", "Olga", "74953334111", "mail400@yandex.ru");
+        persons[4] = new Person("Galinova", "Oksana", "74953334234", "mail23w@yandex.ru");
+        persons[5] = new Person("Garova", "Viktoria", "74953334213", "mail2dd2@yandex.ru");
+        persons[6] = new Person("Ivanov", "Peter", "74953334210", "mail2354@yandex.ru");
+        persons[7] = new Person("Sandrova", "Maria", "74953334217", "mail23459@yandex.ru");
+        persons[8] = new Person("Fomina", "Sofia", "74953334000", "mail888@yandex.ru");
         return persons;
     }
 
     static ArrayList<String> getPhonesList(Person person) {
-        ArrayList<String> phonesList = new ArrayList<>();
-        for (Map.Entry<Person, ArrayList<String>> entryPhone : phoneAndEmail.entrySet()) {
-            if (entryPhone.getKey().equals(person)) {
-                phonesList.add(entryPhone.getValue().get(0));
+        for (Map.Entry<String, ArrayList<ArrayList<String>>> entryPhone : contacts.entrySet()) {
+            if (entryPhone.getKey().equals(person.getFirstName())) {
+                return entryPhone.getValue().get(0);
             }
         }
-        return phonesList;
+        return null;
     }
 
     static ArrayList<String> getEmailList(Person person) {
-        ArrayList<String> emailList = new ArrayList<>();
-        for (Map.Entry<Person, ArrayList<String>> entryEmail : phoneAndEmail.entrySet()) {
-            if (entryEmail.getKey().equals(person)) {
-                emailList.add(entryEmail.getValue().get(1));
+        for (Map.Entry<String, ArrayList<ArrayList<String>>> entryEmail : contacts.entrySet()) {
+            if (entryEmail.getKey().equals(person.getFirstName())) {
+                return entryEmail.getValue().get(1);
             }
         }
-        return emailList;
+        return null;
     }
 }
