@@ -14,6 +14,9 @@ public class Main {
         System.out.println("Start array of the words:\n" + new ArrayList<>(Arrays.asList(words)));
         System.out.println("List of the unique words:\n" + listWords);
         quantityOfRepetition(generateMapOfWords(listWords, words));
+        //Task 2
+        PhoneBook phoneBook = new PhoneBook();
+        printPhones(phoneBook);
 
     }
 
@@ -43,6 +46,16 @@ public class Main {
     static void quantityOfRepetition(HashMap<String, Integer> mapWords) {
         for (Map.Entry<String, Integer> entryWord : mapWords.entrySet()) {
             System.out.println("The word '" + entryWord.getKey() + "' repeats into the list " + entryWord.getValue() + " times");
+        }
+    }
+
+    static void printPhones(PhoneBook phoneBook) {
+        Set<String> persons = new HashSet<>();
+        for (int i = 0; i < phoneBook.getGeneratedPersons().length; i++) {
+            persons.add(phoneBook.generatePersons()[i].getFirstName());
+        }
+        for (String personFirstName : persons) {
+            System.out.println(personFirstName + "'s phones: " + phoneBook.getPhonesList(personFirstName));
         }
     }
 }
