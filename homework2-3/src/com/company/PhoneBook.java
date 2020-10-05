@@ -1,12 +1,13 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PhoneBook {
-    static Map<Person, String> phone = new HashMap<>();
-    static Map<Person, String> email = new HashMap<>();
+    static Map<Person, ArrayList<String>> phoneAndEmail = new HashMap<>();
 
     PhoneBook() {
         initialisation();
@@ -15,8 +16,7 @@ public class PhoneBook {
     static void initialisation() {
         Person[] persons = generatePersons();
         for (int i = 0; i < persons.length; i++) {
-            phone.put(persons[i], "74953334" + i + i / 2 + i);
-            email.put(persons[i], "mail" + i + i / 2 + i + "@yandex.ru");
+            phoneAndEmail.put(persons[i], new ArrayList<>(Arrays.asList("74953334" + i + i / 2 + i, "mail" + i + i / 2 + i + "@yandex.ru")));
         }
     }
 
@@ -40,9 +40,9 @@ public class PhoneBook {
 
     static ArrayList<String> getPhonesList(String firstName) {
         ArrayList<String> phonesList = new ArrayList<>();
-        for (Map.Entry<Person, String> entryPhone : phone.entrySet()) {
+        for (Map.Entry<Person, ArrayList<String>> entryPhone : phoneAndEmail.entrySet()) {
             if (entryPhone.getKey().getFirstName().equals(firstName)) {
-                phonesList.add(entryPhone.getValue());
+                phonesList.add(entryPhone.getValue().get(0));
             }
         }
         return phonesList;
@@ -50,9 +50,9 @@ public class PhoneBook {
 
     static ArrayList<String> getEmailList(String firstName) {
         ArrayList<String> emailList = new ArrayList<>();
-        for (Map.Entry<Person, String> entryEmail : email.entrySet()) {
+        for (Map.Entry<Person, ArrayList<String>> entryEmail : phoneAndEmail.entrySet()) {
             if (entryEmail.getKey().getFirstName().equals(firstName)) {
-                emailList.add(entryEmail.getValue());
+                emailList.add(entryEmail.getValue().get(1));
             }
         }
         return emailList;
