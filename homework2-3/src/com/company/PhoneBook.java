@@ -14,25 +14,25 @@ public class PhoneBook {
         Person[] persons = generatePersons();
         Arrays.sort(persons);
         int hashFirstName = 0;
-        for (int i = 0; i < persons.length; i++) {
+        for (Person person : persons) {
             ArrayList<String> phone = new ArrayList<>();
             ArrayList<String> email = new ArrayList<>();
-            if (persons[i].getHashFirstName() == hashFirstName) {
-                for (int j=0;j< persons.length;j++) {
-                    if (persons[j].getHashFirstName() == hashFirstName) {
-                        phone.add(persons[j].getPhone());
-                        email.add(persons[j].getEmail());
+            if (person.getHashFirstName() == hashFirstName) {
+                for (Person personInto : persons) {
+                    if (personInto.getHashFirstName() == hashFirstName) {
+                        phone.add(personInto.getPhone());
+                        email.add(personInto.getEmail());
                     }
                 }
                 ArrayList<ArrayList<String>> bufferContacts = new ArrayList<>();
                 bufferContacts.add(phone);
                 bufferContacts.add(email);
-                contacts.put(persons[i].getFirstName(), bufferContacts);
-            }else {
-                phone.add(persons[i].getPhone());
-                email.add(persons[i].getEmail());
-                contacts.put(persons[i].getFirstName(), new ArrayList<>(Arrays.asList(phone, email)));
-                hashFirstName=persons[i].getHashFirstName();
+                contacts.put(person.getFirstName(), bufferContacts);
+            } else {
+                phone.add(person.getPhone());
+                email.add(person.getEmail());
+                contacts.put(person.getFirstName(), new ArrayList<>(Arrays.asList(phone, email)));
+                hashFirstName = person.getHashFirstName();
             }
 
         }
