@@ -13,16 +13,17 @@ public class PhoneBook {
     }
 
     static void initialisation() {
-        Person[] persons=generatePersons();
-        for(int i=0;i< persons.length;i++){
-            phone.put(persons[i], "74953334"+i+i/2+i);
-            email.put(persons[i], "mail"+i+i/2+i+"@yandex.ru");
+        Person[] persons = generatePersons();
+        for (int i = 0; i < persons.length; i++) {
+            phone.put(persons[i], "74953334" + i + i / 2 + i);
+            email.put(persons[i], "mail" + i + i / 2 + i + "@yandex.ru");
         }
     }
 
-    static Person[] getGeneratedPersons(){
+    static Person[] getGeneratedPersons() {
         return generatePersons();
     }
+
     static Person[] generatePersons() {
         Person[] persons = new Person[9];
         persons[0] = new Person("Ivanov", "Oleg");
@@ -36,13 +37,24 @@ public class PhoneBook {
         persons[8] = new Person("Fomina", "Sofia");
         return persons;
     }
-    static ArrayList<String> getPhonesList(String firstName){
-        ArrayList<String> phonesList=new ArrayList<>();
-        for(Map.Entry<Person,String> entryPhone: phone.entrySet()){
-            if(entryPhone.getKey().getFirstName().equals(firstName)){
+
+    static ArrayList<String> getPhonesList(String firstName) {
+        ArrayList<String> phonesList = new ArrayList<>();
+        for (Map.Entry<Person, String> entryPhone : phone.entrySet()) {
+            if (entryPhone.getKey().getFirstName().equals(firstName)) {
                 phonesList.add(entryPhone.getValue());
             }
         }
         return phonesList;
+    }
+
+    static ArrayList<String> getEmailList(String firstName) {
+        ArrayList<String> emailList = new ArrayList<>();
+        for (Map.Entry<Person, String> entryEmail : email.entrySet()) {
+            if (entryEmail.getKey().getFirstName().equals(firstName)) {
+                emailList.add(entryEmail.getValue());
+            }
+        }
+        return emailList;
     }
 }

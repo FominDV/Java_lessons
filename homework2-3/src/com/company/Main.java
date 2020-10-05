@@ -16,7 +16,11 @@ public class Main {
         quantityOfRepetition(generateMapOfWords(listWords, words));
         //Task 2
         PhoneBook phoneBook = new PhoneBook();
+        System.out.println();
         printPhones(phoneBook);
+        System.out.println();
+        printEmail(phoneBook);
+
 
     }
 
@@ -50,12 +54,22 @@ public class Main {
     }
 
     static void printPhones(PhoneBook phoneBook) {
-        Set<String> persons = new HashSet<>();
-        for (int i = 0; i < phoneBook.getGeneratedPersons().length; i++) {
-            persons.add(phoneBook.generatePersons()[i].getFirstName());
-        }
+        Set<String> persons = getPersonFirstNames(phoneBook);
         for (String personFirstName : persons) {
             System.out.println(personFirstName + "'s phones: " + phoneBook.getPhonesList(personFirstName));
         }
+    }
+    static void printEmail(PhoneBook phoneBook){
+        Set<String> persons = getPersonFirstNames(phoneBook);
+        for (String personFirstName : persons) {
+            System.out.println(personFirstName + "'s email: " + phoneBook.getEmailList(personFirstName));
+        }
+    }
+    static Set<String> getPersonFirstNames(PhoneBook phoneBook){
+        Set<String> persons=new HashSet<>();
+        for (int i = 0; i < phoneBook.getGeneratedPersons().length; i++) {
+            persons.add(phoneBook.generatePersons()[i].getFirstName());
+        }
+        return persons;
     }
 }
