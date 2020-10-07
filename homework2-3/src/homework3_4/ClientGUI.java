@@ -26,6 +26,8 @@ public class ClientGUI extends JFrame implements ActionListener {
     private final JList<String> userList = new JList<>();
     private final JTextArea log = new JTextArea();
 
+    private final ChatServer chatServer = new ChatServer();
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ClientGUI());
     }
@@ -43,6 +45,8 @@ public class ClientGUI extends JFrame implements ActionListener {
         log.setEditable(false);
         scrollUserList.setPreferredSize(new Dimension(150, 0));
         cbAlwaysOnTop.addActionListener(this);
+        btnSend.addActionListener(this);
+        tfMessage.addActionListener(this);
         panelTop.add(tfIPAddress);
         panelTop.add(tfPort);
         panelTop.add(cbAlwaysOnTop);
@@ -64,6 +68,8 @@ public class ClientGUI extends JFrame implements ActionListener {
         Object source = e.getSource();
         if (source == cbAlwaysOnTop) {
             setAlwaysOnTop(cbAlwaysOnTop.isSelected());
+        } else if (source == btnSend || source == tfMessage) {
+            chatServer.addMessageIntoLog(tfMessage.getText(),tfLogin.getText(), log);
         } else {
             throw new RuntimeException("Unknown source: " + source);
         }
