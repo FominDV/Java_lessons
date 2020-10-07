@@ -70,6 +70,7 @@ public class ClientGUI extends JFrame implements ActionListener {
             setAlwaysOnTop(cbAlwaysOnTop.isSelected());
         } else if (source == btnSend || source == tfMessage) {
             chatServer.addMessageIntoLog(tfMessage.getText(),tfLogin.getText(), log);
+            tfMessage.setText("");
         } else {
             throw new RuntimeException("Unknown source: " + source);
         }

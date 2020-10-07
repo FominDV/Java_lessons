@@ -37,8 +37,7 @@ public class ServerGUI extends JFrame implements  ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == BTN_START) {
-            throw new RuntimeException("Unknown source: " + source);
-            //CHAT_SERVER.start(8189);
+            CHAT_SERVER.start(8189);
         } else if (source == BTN_STOP) {
             CHAT_SERVER.stop();
         } else {
