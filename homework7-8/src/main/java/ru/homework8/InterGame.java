@@ -1,10 +1,11 @@
 package ru.homework8;
 
 public class InterGame {
-    private static int pointsToWin = 10;
-    private static int levelAI=1;
-    protected static void machineTurn(Boxes[][] boxes){
-        switch (levelAI){
+    private static int pointsToWin = 5;
+    private static int levelAI = 1;
+
+    protected static void machineTurn(Boxes[][] boxes) {
+        switch (levelAI) {
             case 0:
                 ArtificialIntelligenceLevel0.turnAI0(boxes);
                 break;
@@ -13,6 +14,7 @@ public class InterGame {
                 break;
         }
     }
+
     static boolean isFullMap(Boxes[][] boxes) {
         for (int i = 0; i < boxes.length; i++) {
             for (int j = 0; j < boxes.length; j++) {
@@ -30,7 +32,7 @@ public class InterGame {
     static boolean isVictory(Boxes[][] boxes, char symbol) {
         for (int i = 0; i < boxes.length; i++) {
             if (isFullLinesForVictory(boxes, symbol, i)) return true;
-            if (isFullDiagonalsForVictory(boxes, symbol)) return true;
+            if (isFullDiagonalsForVictory(boxes, symbol, i)) return true;
         }
         return false;
     }
@@ -61,49 +63,47 @@ public class InterGame {
         return false;
     }
 
-    private static boolean isFullDiagonalsForVictory(Boxes[][] boxes, char symbol) {
-        for (int i = 0; i <= (boxes.length - pointsToWin); i++) {
-            pointsMainDiagonal1 = 0;
-            pointsMainDiagonal2 = 0;
-            pointsSecondaryDiagonal1 = 0;
-            pointsSecondaryDiagonal2 = 0;
-            for (int j = 0; j < boxes.length; j++) {
-                if ((i + j) < boxes.length && boxes[i + j][j].isSymbol(symbol)) {
-                    pointsMainDiagonal1++;
-                    if (pointsMainDiagonal1 == pointsToWin) {
-                        setMainDiagonalColor(boxes, (i + j), j, symbol);
-                        return true;
-                    }
-                } else {
-                    pointsMainDiagonal1 = 0;
+    private static boolean isFullDiagonalsForVictory(Boxes[][] boxes, char symbol, int i) {
+        pointsMainDiagonal1 = 0;
+        pointsMainDiagonal2 = 0;
+        pointsSecondaryDiagonal1 = 0;
+        pointsSecondaryDiagonal2 = 0;
+        for (int j = 0; j < boxes.length; j++) {
+            if ((i + j) < boxes.length && boxes[i + j][j].isSymbol(symbol)) {
+                pointsMainDiagonal1++;
+                if (pointsMainDiagonal1 == pointsToWin) {
+                    setMainDiagonalColor(boxes, (i + j), j, symbol);
+                    return true;
                 }
-                if ((i + j) < boxes.length && boxes[j][j + i].isSymbol(symbol)) {
-                    pointsMainDiagonal2++;
-                    if (pointsMainDiagonal2 == pointsToWin) {
-                        setMainDiagonalColor(boxes, j, (j + i), symbol);
-                        return true;
-                    }
-                } else {
-                    pointsMainDiagonal2 = 0;
+            } else {
+                pointsMainDiagonal1 = 0;
+            }
+            if ((i + j) < boxes.length && boxes[j][j + i].isSymbol(symbol)) {
+                pointsMainDiagonal2++;
+                if (pointsMainDiagonal2 == pointsToWin) {
+                    setMainDiagonalColor(boxes, j, (j + i), symbol);
+                    return true;
                 }
-                if ((i + j) < boxes.length && boxes[i + j][boxes.length - j - 1].isSymbol(symbol)) {
-                    pointsSecondaryDiagonal1++;
-                    if (pointsSecondaryDiagonal1 == pointsToWin) {
-                        setSecondaryDiagonalColor(boxes, (i + j), (boxes.length - j - 1), symbol);
-                        return true;
-                    }
-                } else {
-                    pointsSecondaryDiagonal1 = 0;
+            } else {
+                pointsMainDiagonal2 = 0;
+            }
+            if ((i + j) < boxes.length && boxes[i + j][boxes.length - j - 1].isSymbol(symbol)) {
+                pointsSecondaryDiagonal1++;
+                if (pointsSecondaryDiagonal1 == pointsToWin) {
+                    setSecondaryDiagonalColor(boxes, (i + j), (boxes.length - j - 1), symbol);
+                    return true;
                 }
-                if ((i + j) < boxes.length && boxes[j][boxes.length - j - i - 1].isSymbol(symbol)) {
-                    pointsSecondaryDiagonal2++;
-                    if (pointsSecondaryDiagonal2 == pointsToWin) {
-                        setSecondaryDiagonalColor(boxes, j, (boxes.length - j - i - 1), symbol);
-                        return true;
-                    }
-                } else {
-                    pointsSecondaryDiagonal2 = 0;
+            } else {
+                pointsSecondaryDiagonal1 = 0;
+            }
+            if ((i + j) < boxes.length && boxes[j][boxes.length - j - i - 1].isSymbol(symbol)) {
+                pointsSecondaryDiagonal2++;
+                if (pointsSecondaryDiagonal2 == pointsToWin) {
+                    setSecondaryDiagonalColor(boxes, j, (boxes.length - j - i - 1), symbol);
+                    return true;
                 }
+            } else {
+                pointsSecondaryDiagonal2 = 0;
             }
         }
         return false;

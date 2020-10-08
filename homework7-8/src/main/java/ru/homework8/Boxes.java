@@ -1,28 +1,19 @@
 package ru.homework8;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
 public class Boxes extends JButton {
     protected char symbol;
     static final char EMPTY = 'e';
-    static final char USER = 'X';
-    static final char MACHINE = 'O';
-    private static int SIZE_OF_TEXT_INTO_BOX = (int) (GameWindow.height/(GameWindow.sizeOfMap*2));
+    static  char USER = 'X';
+    static  char MACHINE = 'O';
+    private static int SIZE_OF_TEXT_INTO_BOX = getFontSize();
+
     //'e' is 'empty'
     Boxes() {
         setFont(new Font("SANS_SERIF", Font.BOLD, SIZE_OF_TEXT_INTO_BOX));
         symbol = EMPTY;
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        Graphics2D g2 =(Graphics2D)g;
-        g2.setColor(Color.RED);
-        g2.setStroke(new BasicStroke(10f));
-        g2.drawOval(30,30,30,30);
     }
 
     protected boolean isEmpty() {
@@ -53,5 +44,13 @@ public class Boxes extends JButton {
         } else {
             return false;
         }
+    }
+
+    protected static int getFontSize() {
+        if (GameWindow.sizeOfMap <= 15) return 600 / GameWindow.sizeOfMap;
+        if (GameWindow.sizeOfMap <= 19) return 400 / GameWindow.sizeOfMap;
+        if (GameWindow.sizeOfMap <= 22) return 300 / GameWindow.sizeOfMap;
+        if (GameWindow.sizeOfMap <= 23) return 250 / GameWindow.sizeOfMap;
+        return 1;
     }
 }
