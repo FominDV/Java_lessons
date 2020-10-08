@@ -17,8 +17,9 @@ public class GameWindow extends JFrame {
         setSize(width, height);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+        setResizable(false);
         makeMap();
+        setVisible(true);
     }
 
     JPanel map = new JPanel(new GridLayout(sizeOfMap, sizeOfMap));

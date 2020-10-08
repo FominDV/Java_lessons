@@ -4,7 +4,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
     private static int pointsHorizontal, pointsVertical, pointsMainDiagonal1, pointsMainDiagonal2, pointsMainDiagonal11, pointsMainDiagonal22;
 
     protected static void turnAI1(Boxes[][] boxes, int pointsToWin) {
-        if (!isTurnAI1Realization(boxes, 4, pointsToWin)) {
+        if (!isTurnAI1Realization(boxes, 2, pointsToWin)) {
             turnAI0(boxes);
         }
     }
@@ -293,7 +293,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
             if (boxes[j + i][boxes.length - j - 1].isSymbol(Boxes.USER)) {
                 pointsMainDiagonal2++;
                 if (pointsMainDiagonal2 == pointsToWin) {
-                    if (isEmptyNextBoxForDiagonal(boxes, j + i + 1, boxes.length - j - 2, '2', needingPoints) && isMachineMadeTurn(boxes[j + i + 1][boxes.length - j - 2])) {
+                    if (boxes.length - j - 2 >= 0 && isEmptyNextBoxForDiagonal(boxes, j + i + 1, boxes.length - j - 2, '2', needingPoints) && isMachineMadeTurn(boxes[j + i + 1][boxes.length - j - 2])) {
                         return true;
                     } else if (j + i - pointsToWin >= 0 && boxes.length - j - 1 + pointsToWin <= boxes.length && isEmptyNextBoxForDiagonal(boxes, j + i - pointsToWin, boxes.length - j - 1 + pointsToWin, 'w', needingPoints) && isMachineMadeTurn(boxes[j + i - pointsToWin][boxes.length - j - 1 + pointsToWin])) {
                         return true;
@@ -306,7 +306,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
             if (boxes[j][boxes.length - j - i - 1].isSymbol(Boxes.USER)) {
                 pointsMainDiagonal22++;
                 if (pointsMainDiagonal22 == pointsToWin) {
-                    if (isEmptyNextBoxForDiagonal(boxes, j + 1, boxes.length - j - i - 2, '2', needingPoints) && isMachineMadeTurn(boxes[j + 1][boxes.length - j - i - 2])) {
+                    if (boxes.length - j - i - 2 >= 0 && isEmptyNextBoxForDiagonal(boxes, j + 1, boxes.length - j - i - 2, '2', needingPoints) && isMachineMadeTurn(boxes[j + 1][boxes.length - j - i - 2])) {
                         return true;
                     } else if (j - pointsToWin >= 0 && boxes.length - j - i - 1 + pointsToWin <= boxes.length && isEmptyNextBoxForDiagonal(boxes, j - pointsToWin, boxes.length - j - i - 1 + pointsToWin, 'w', needingPoints) && isMachineMadeTurn(boxes[j - pointsToWin][boxes.length - j - i - 1 + pointsToWin])) {
                         return true;
@@ -351,7 +351,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
             case 'w':
                 pointsI = i - needingPoints + 1;
                 pointsJ = i + needingPoints - 1;
-                if (pointsI >= 0 && pointsJ <= boxes.length && (boxes[pointsI][pointsJ].isEmpty() || boxes[pointsI][pointsJ].isSymbol(Boxes.USER))) {
+                if (pointsI >= 0 && pointsJ < boxes.length && (boxes[pointsI][pointsJ].isEmpty() || boxes[pointsI][pointsJ].isSymbol(Boxes.USER))) {
                     return true;
                 } else {
                     return false;
