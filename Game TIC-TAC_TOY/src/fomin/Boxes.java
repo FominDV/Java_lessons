@@ -1,4 +1,4 @@
-package ru.homework8;
+package fomin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,3 +54,4 @@ public class Boxes extends JButton {
         return 1;
     }
 }
+

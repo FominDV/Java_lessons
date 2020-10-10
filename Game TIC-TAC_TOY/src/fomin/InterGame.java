@@ -1,4 +1,4 @@
-package ru.homework8;
+package fomin;
 
 public class InterGame {
     private static int pointsToWin = 5;
@@ -169,3 +169,4 @@ public class InterGame {
         }
     }
 }
+
