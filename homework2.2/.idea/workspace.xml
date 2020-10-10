@@ -27,7 +27,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77f66d8a-1306-451b-bd52-3fb5f4e3b98d" name="Default Changelist" comment="" />
+    <list default="true" id="77f66d8a-1306-451b-bd52-3fb5f4e3b98d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Game TIC-TAC_TOY/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Game TIC-TAC_TOY/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
