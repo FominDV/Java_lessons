@@ -24,11 +24,12 @@ public class GameWindow extends JFrame {
 
     JPanel map = new JPanel(new GridLayout(sizeOfMap, sizeOfMap));
     Boxes boxes[][] = new Boxes[sizeOfMap][sizeOfMap];
+
     protected void makeMap() {
         for (int i = 0; i < boxes.length; i++) {
             for (int j = 0; j < boxes.length; j++) {
                 final Boxes box = new Boxes();
-                box.setName(i+""+j);
+                box.setName(i + "" + j);
                 boxes[i][j] = box;
                 box.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -36,20 +37,20 @@ public class GameWindow extends JFrame {
                             box.setCross();
                             boxes[Character.getNumericValue(box.getName().charAt(0))][Character.getNumericValue(box.getName().charAt(1))] = box;
                             if (InterGame.isVictory(boxes, Boxes.USER)) {
-                                JOptionPane.showMessageDialog(null,"It was last turn!");
+                                JOptionPane.showMessageDialog(null, "It was last turn!");
                                 endGame("VICTORY");
                             }
                             if (InterGame.isFullMap(boxes)) {
-                                JOptionPane.showMessageDialog(null,"It was last turn!");
+                                JOptionPane.showMessageDialog(null, "It was last turn!");
                                 endGame("draw game");
                             } else {
                                 InterGame.machineTurn(boxes);
                                 if (InterGame.isVictory(boxes, Boxes.MACHINE)) {
-                                    JOptionPane.showMessageDialog(null,"It was last turn!");
+                                    JOptionPane.showMessageDialog(null, "It was last turn!");
                                     endGame("LOSS");
                                 }
                                 if (InterGame.isFullMap(boxes)) {
-                                    JOptionPane.showMessageDialog(null,"It was last turn!");
+                                    JOptionPane.showMessageDialog(null, "It was last turn!");
                                     endGame("draw game");
                                 }
                             }
@@ -84,16 +85,8 @@ public class GameWindow extends JFrame {
     }
 
     protected void setActionsEndingButtons() {
-        exit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        restart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Main.newGame();
-            }
-        });
+        exit.addActionListener(e -> System.exit(0));
+        restart.addActionListener(e -> Main.newGame());
     }
 }
 

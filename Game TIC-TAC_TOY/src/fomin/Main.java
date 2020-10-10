@@ -8,7 +8,7 @@ public class Main {
     }
 
     static void newGame() {
-        window.setVisible(false);
+        window.dispose();
         window = new GameWindow();
     }
 }
