@@ -7,9 +7,11 @@ public class HomeWork2_5 {
     static final int h = size / 2;
 
     public static void main(String[] args) {
+        long timeOfFirstMethod, timeOfSecondMethod;
         float[] arr = generateArray();
-        firstMethod(arr);
-        secondMethod(arr);
+        timeOfFirstMethod = firstMethod(arr);
+        timeOfSecondMethod = secondMethod(arr);
+        System.out.println("Time difference is " + Math.abs(timeOfFirstMethod - timeOfSecondMethod) + "milliseconds");
     }
 
     private static float[] generateArray() {
@@ -33,26 +35,31 @@ public class HomeWork2_5 {
         return Arrays.copyOfRange(arr, h, size);
     }
 
-    private static void firstMethod(float[] startArray) {
+    private static long firstMethod(float[] startArray) {
         long startTime = System.currentTimeMillis();
         calculatedValuesOfArray(startArray);
         long deltaTime = System.currentTimeMillis() - startTime;
         System.out.println("First method:");
         System.out.println("Elapsed Time of the first method is " + deltaTime + " milliseconds.");
+        return deltaTime;
     }
 
-    private static void secondMethod(float[] startArray) {
+    private static long secondMethod(float[] startArray) {
         long startTime = System.currentTimeMillis();
         long timeAfterDivision, timeAfterCalculationFirstParts, timeAfterCalculationSecondParts, timeAfterAddition;
         float[] firstPart = firstPartOfArr(startArray);
         float[] secondPart = secondPartOfArr(startArray);
         timeAfterDivision = System.currentTimeMillis();
-        firstPart = new SpecialThread(firstPart).arr;
+        SpecialThread t1 = new SpecialThread(firstPart);
+        t1.start();
+        float[] firstPartNew = t1.arr;
         timeAfterCalculationFirstParts = System.currentTimeMillis();
-        secondPart = new SpecialThread(secondPart).arr;
+        SpecialThread t2 = new SpecialThread(secondPart);
+        t2.start();
+        float[] secondPartNew = t2.arr;
         timeAfterCalculationSecondParts = System.currentTimeMillis();
-        System.arraycopy(firstPart, 0, startArray, 0, h);
-        System.arraycopy(secondPart, 0, startArray, h, h);
+        System.arraycopy(firstPartNew, 0, startArray, 0, h);
+        System.arraycopy(secondPartNew, 0, startArray, h, h);
         timeAfterAddition = System.currentTimeMillis();
         System.out.println("Second method:");
         System.out.println("Elapsed Time of the division of array is " + (timeAfterDivision - startTime) + " milliseconds.");
@@ -60,6 +67,7 @@ public class HomeWork2_5 {
         System.out.println("Elapsed Time of the calculations a new values for the second part is " + (timeAfterCalculationSecondParts - timeAfterCalculationFirstParts) + " milliseconds.");
         System.out.println("Elapsed Time of the addition into a one array is " + (timeAfterAddition - timeAfterCalculationSecondParts) + " milliseconds.");
         System.out.println("Elapsed Time of the second method is " + (timeAfterAddition - startTime) + " milliseconds.");
+        return timeAfterAddition - startTime;
     }
 
 }
