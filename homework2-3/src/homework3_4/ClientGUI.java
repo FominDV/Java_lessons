@@ -4,8 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.Date;
+
+import static java.lang.String.format;
 
 public class ClientGUI extends JFrame implements ActionListener {
+    private static PrintStream printLog;
+
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
 
@@ -25,8 +33,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 
     private final JList<String> userList = new JList<>();
     private final JTextArea log = new JTextArea();
-
-    private final ChatServer chatServer = new ChatServer();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ClientGUI());
@@ -71,11 +77,25 @@ public class ClientGUI extends JFrame implements ActionListener {
         if (source == cbAlwaysOnTop) {
             setAlwaysOnTop(cbAlwaysOnTop.isSelected());
         } else if (source == btnSend || source == tfMessage) {
-            chatServer.addMessageIntoLog(tfMessage.getText(), tfLogin.getText(), log);
-            tfMessage.setText("");
+            addMessageIntoLog(tfMessage.getText(), tfLogin.getText());
         } else {
             throw new RuntimeException("Unknown source: " + source);
         }
     }
 
+    private void addMessageIntoLog(String message, String userName) {
+        try {
+            printLog = new PrintStream(new FileOutputStream("log.txt", true));
+        } catch (FileNotFoundException e) {
+            new FileLogIsNotFound("log.txt", e);
+        }
+        if (!(message.equals(""))) {
+            Date date = new Date();
+            String messageForLog = format("%s(%tD %tR):\n%s\n", userName, date, date, message);
+            log.append(messageForLog);
+            printLog.print(messageForLog);
+            tfMessage.setText(null);
+            tfMessage.grabFocus();
+        }
+    }
 }
