@@ -12,7 +12,7 @@ public class HomeWork2_5 {
         timeOfFirstMethod = firstMethod(arr);
         arr = generateArray();
         timeOfSecondMethod = secondMethod(arr);
-        System.out.println("Time difference is " + Math.abs(timeOfFirstMethod - timeOfSecondMethod) + "milliseconds");
+        System.out.println("Time difference is " + Math.abs(timeOfFirstMethod - timeOfSecondMethod) + " milliseconds");
     }
 
     private static float[] generateArray() {
@@ -61,11 +61,9 @@ public class HomeWork2_5 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        float[] firstPartNew = t1.arr;
-        float[] secondPartNew = t2.arr;
         timeAfterCalculation = System.currentTimeMillis();
-        System.arraycopy(firstPartNew, 0, startArray, 0, h);
-        System.arraycopy(secondPartNew, 0, startArray, h, h);
+        System.arraycopy(firstPart, 0, startArray, 0, h);
+        System.arraycopy(secondPart, 0, startArray, h, h);
         timeAfterAddition = System.currentTimeMillis();
         System.out.println("Second method:");
         System.out.println("Elapsed Time of the division of array is " + (timeAfterDivision - startTime) + " milliseconds.");
