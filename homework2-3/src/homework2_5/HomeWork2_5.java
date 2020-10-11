@@ -52,12 +52,12 @@ public class HomeWork2_5 {
         float[] secondPart = secondPartOfArr(startArray);
         timeAfterDivision = System.currentTimeMillis();
         SpecialThread t1 = new SpecialThread(firstPart);
-        t1.start();
         SpecialThread t2 = new SpecialThread(secondPart);
-        t2.start();
         try {
             t1.join();
+            firstPart=t1.arr;
             t2.join();
+            secondPart=t2.arr;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -5,13 +5,15 @@ public class SpecialThread extends Thread {
     protected long startTime;
     protected long deltaTime;
 
-    public SpecialThread(float[] arr){
-        this.arr=arr;
+    public SpecialThread(float[] arr) {
+        this.arr = arr;
+        start();
     }
+
     @Override
     public void run() {
-        startTime=System.currentTimeMillis();
-       HomeWork2_5.calculatedValuesOfArray(arr);
+        startTime = System.currentTimeMillis();
+        arr = HomeWork2_5.calculatedValuesOfArray(arr);
         deltaTime = System.currentTimeMillis() - startTime;
     }
 }
