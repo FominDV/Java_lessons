@@ -74,13 +74,13 @@ public class HomeWork2_5 {
         System.arraycopy(firstPart, 0, startArray, 0, h);
         System.arraycopy(secondPart, 0, startArray, h, h);
         timeAfterAddition = System.currentTimeMillis();
-        printControlSum(startArray);
         System.out.println("Second method:");
         System.out.println("Elapsed Time of the division of array is " + (timeAfterDivision - startTime) + " milliseconds.");
         System.out.println("Elapsed Time of the calculations a new values for the first part is " + t1.deltaTime + " milliseconds.");
         System.out.println("Elapsed Time of the calculations a new values for the second part is " + t2.deltaTime + " milliseconds.");
         System.out.println("Elapsed Time of the addition into a one array is " + (timeAfterAddition - timeAfterCalculation) + " milliseconds.");
         System.out.println("Elapsed Time of the second method is " + (timeAfterAddition - startTime) + " milliseconds.");
+        printControlSum(startArray);
         return timeAfterAddition - startTime;
     }
 
