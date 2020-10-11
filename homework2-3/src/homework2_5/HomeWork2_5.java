@@ -20,10 +20,11 @@ public class HomeWork2_5 {
         return arr;
     }
 
-    protected static float[] calculatedValuesOfArray(float[] array) {
-        float[] newArr=Arrays.copyOf(array,array.length);
+    protected static float[] calculatedValuesOfArray(float[] array, int startIndex) {
+        float[] newArr = Arrays.copyOf(array, array.length);
         for (int i = 0; i < newArr.length; i++) {
-            newArr[i] = (float) (newArr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            newArr[i] = (float) (newArr[i] * Math.sin(0.2f + startIndex / 5) * Math.cos(0.2f + startIndex / 5) * Math.cos(0.4f + startIndex / 2));
+            startIndex++;
         }
         return newArr;
     }
@@ -38,26 +39,34 @@ public class HomeWork2_5 {
 
     private static long firstMethod(float[] startArray) {
         long startTime = System.currentTimeMillis();
-        float[] calculatedArray= calculatedValuesOfArray(startArray);
+        float[] calculatedArray = calculatedValuesOfArray(startArray, 0);
         long deltaTime = System.currentTimeMillis() - startTime;
         System.out.println("First method:");
         System.out.println("Elapsed Time of the first method is " + deltaTime + " milliseconds.");
+        printControlSum(calculatedArray);
         return deltaTime;
     }
 
+        private static void printControlSum(float[] array){
+            float sum=0f;
+            for (float value: array){
+                sum+=value;
+            }
+            System.out.println("Control sum of array is "+sum);
+        }
     private static long secondMethod(float[] startArray) {
         long startTime = System.currentTimeMillis();
         long timeAfterDivision, timeAfterCalculation, timeAfterAddition;
         float[] firstPart = firstPartOfArr(startArray);
         float[] secondPart = secondPartOfArr(startArray);
         timeAfterDivision = System.currentTimeMillis();
-        SpecialThread t1 = new SpecialThread(firstPart);
-        SpecialThread t2 = new SpecialThread(secondPart);
+        SpecialThread t1 = new SpecialThread(firstPart, 0);
+        SpecialThread t2 = new SpecialThread(secondPart, h);
         try {
             t1.join();
-            firstPart=t1.arr;
+            firstPart = t1.arr;
             t2.join();
-            secondPart=t2.arr;
+            secondPart = t2.arr;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -65,6 +74,7 @@ public class HomeWork2_5 {
         System.arraycopy(firstPart, 0, startArray, 0, h);
         System.arraycopy(secondPart, 0, startArray, h, h);
         timeAfterAddition = System.currentTimeMillis();
+        printControlSum(startArray);
         System.out.println("Second method:");
         System.out.println("Elapsed Time of the division of array is " + (timeAfterDivision - startTime) + " milliseconds.");
         System.out.println("Elapsed Time of the calculations a new values for the first part is " + t1.deltaTime + " milliseconds.");
