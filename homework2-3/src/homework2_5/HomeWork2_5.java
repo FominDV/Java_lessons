@@ -10,7 +10,6 @@ public class HomeWork2_5 {
         long timeOfFirstMethod, timeOfSecondMethod;
         float[] arr = generateArray();
         timeOfFirstMethod = firstMethod(arr);
-        arr = generateArray();
         timeOfSecondMethod = secondMethod(arr);
         System.out.println("Time difference is " + Math.abs(timeOfFirstMethod - timeOfSecondMethod) + " milliseconds");
     }
@@ -22,10 +21,11 @@ public class HomeWork2_5 {
     }
 
     protected static float[] calculatedValuesOfArray(float[] array) {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (float) (array[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+        float[] newArr=Arrays.copyOf(array,array.length);
+        for (int i = 0; i < newArr.length; i++) {
+            newArr[i] = (float) (newArr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
         }
-        return array;
+        return newArr;
     }
 
     private static float[] firstPartOfArr(float[] arr) {
@@ -38,7 +38,7 @@ public class HomeWork2_5 {
 
     private static long firstMethod(float[] startArray) {
         long startTime = System.currentTimeMillis();
-        calculatedValuesOfArray(startArray);
+        float[] calculatedArray= calculatedValuesOfArray(startArray);
         long deltaTime = System.currentTimeMillis() - startTime;
         System.out.println("First method:");
         System.out.println("Elapsed Time of the first method is " + deltaTime + " milliseconds.");
