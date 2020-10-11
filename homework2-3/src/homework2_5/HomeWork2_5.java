@@ -17,7 +17,7 @@ public class HomeWork2_5 {
 
     private static float[] generateArray() {
         float[] arr = new float[size];
-        for (int i = 0; i < arr.length; i++) arr[i] = 1f;
+        Arrays.fill(arr, 1);
         return arr;
     }
 
