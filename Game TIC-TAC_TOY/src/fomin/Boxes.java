@@ -6,8 +6,8 @@ import java.awt.*;
 public class Boxes extends JButton {
     protected char symbol;
     static final char EMPTY = 'e';
-    static  char USER = 'X';
-    static  char MACHINE = 'O';
+    protected static  char USER;
+    protected static  char MACHINE;
     private int SIZE_OF_TEXT_INTO_BOX = getFontSize();
 
     //'e' is 'empty'

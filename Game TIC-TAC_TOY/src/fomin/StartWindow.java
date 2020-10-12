@@ -13,19 +13,23 @@ public class StartWindow extends JFrame implements ActionListener {
     static final int WIDTH = 1000;
     static final int HEIGHT = 1000;
     private JPanel radioButtonsPanel = new JPanel(new FlowLayout());
-    private JPanel[] menuRowPanel = new JPanel[6];
-    private JPanel menuPanel = new JPanel(new GridLayout(6, 1));
+    private JPanel radioButtonsSymbolPanel = new JPanel(new FlowLayout());
+    private JPanel[] menuRowPanel = new JPanel[8];
+    private JPanel menuPanel = new JPanel(new GridLayout(8, 1));
     static JButton startButton = new JButton("START");
     static ButtonGroup buttonGroup = new ButtonGroup();
+    static ButtonGroup buttonSymbolGroup = new ButtonGroup();
     static JRadioButton[] levelRadioButton = new JRadioButton[4];
+    static JRadioButton[] symbolRadioButton = new JRadioButton[2];
     static JLabel sizeLabel = new JLabel("Select the size of the game map:");
     static JLabel numberOfSymbolsToWinLabel = new JLabel("Choose the number of symbols to win:");
     static JLabel greaterLabel = new JLabel("<html><p align='center'>Welcome to the game TIC-TAC-toe!<br> Select the necessary parameters to start the game and click 'start'" +
             "<br>Number of symbols for win should to be greater than 2 and less or equal than size of the map.<br>Size of the map should be greater than 2 and less than 24</p></html>");
     static JLabel levelLabel = new JLabel("Select the difficulty level:");
+    static JLabel symbolLabel = new JLabel("Select your symbol:");
     static JTextField sizeTF = new JTextField(2);
     static JTextField numberOfSymbolsToWinTF = new JTextField(2);
-    Font textMenuFont = new Font("SANS_SERIF", Font.BOLD, 35);
+    Font textMenuFont = new Font("SANS_SERIF", Font.BOLD, 25);
     Font textGreaterFont = new Font("SANS_SERIF", Font.BOLD, 30);
     Font textButton = new Font("SANS_SERIF", Font.BOLD, 100);
 
@@ -47,6 +51,7 @@ public class StartWindow extends JFrame implements ActionListener {
         numberOfSymbolsToWinLabel.setFont(textMenuFont);
         numberOfSymbolsToWinTF.setFont(textMenuFont);
         levelLabel.setFont(textMenuFont);
+        symbolLabel.setFont(textMenuFont);
         startButton.setFont(textButton);
         for (int i = 0; i < menuRowPanel.length; i++) {
             menuRowPanel[i] = new JPanel();
@@ -64,6 +69,17 @@ public class StartWindow extends JFrame implements ActionListener {
         }
         levelRadioButton[2].setSelected(true);
         menuRowPanel[5].add(radioButtonsPanel);
+        menuRowPanel[6].add(symbolLabel);
+        symbolRadioButton[0] = new JRadioButton("x");
+        symbolRadioButton[1] = new JRadioButton("O");
+        symbolRadioButton[0].setFont(textMenuFont);
+        symbolRadioButton[1].setFont(textMenuFont);
+        buttonSymbolGroup.add(symbolRadioButton[0]);
+        buttonSymbolGroup.add(symbolRadioButton[1]);
+        symbolRadioButton[0].setSelected(true);
+        radioButtonsSymbolPanel.add(symbolRadioButton[0]);
+        radioButtonsSymbolPanel.add(symbolRadioButton[1]);
+        menuRowPanel[7].add(radioButtonsSymbolPanel);
         for (int i = 0; i < menuRowPanel.length; i++) {
             menuPanel.add(menuRowPanel[i]);
         }
@@ -128,6 +144,17 @@ public class StartWindow extends JFrame implements ActionListener {
         for (int i = 0; i < levelRadioButton.length; i++) {
             if (levelRadioButton[i].isSelected()) {
                 InterGame.levelAI = i;
+            }
+        }
+        for (int i = 0; i < symbolRadioButton.length; i++) {
+            if (symbolRadioButton[i].isSelected()) {
+                if (i == 0) {
+                    Boxes.USER = 'X';
+                    Boxes.MACHINE = 'O';
+                } else {
+                    Boxes.USER = 'O';
+                    Boxes.MACHINE = 'X';
+                }
             }
         }
         return true;
