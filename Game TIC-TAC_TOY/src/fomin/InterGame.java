@@ -1,8 +1,8 @@
 package fomin;
 
 public class InterGame {
-    private static int pointsToWin = 5;
-    private static int levelAI = 1;
+    protected static int pointsToWin = 5;
+    protected static int levelAI = 1;
 
     protected static void machineTurn(Boxes[][] boxes) {
         switch (levelAI) {

@@ -8,9 +8,17 @@ public class Main {
         startWindow = new StartWindow();
     }
 
-    static void newGame() {
+   protected static void newGame() {
         window.dispose();
         window = new GameWindow();
+    }
+    protected static void newStartParametersGame(){
+        startWindow.dispose();
+        window=new GameWindow();
+    }
+    protected static void newParametersGame(){
+        window.dispose();
+        startWindow=new StartWindow();
     }
 }
 

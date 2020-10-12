@@ -8,7 +8,7 @@ public class Boxes extends JButton {
     static final char EMPTY = 'e';
     static  char USER = 'X';
     static  char MACHINE = 'O';
-    private static int SIZE_OF_TEXT_INTO_BOX = getFontSize();
+    private int SIZE_OF_TEXT_INTO_BOX = getFontSize();
 
     //'e' is 'empty'
     Boxes() {
