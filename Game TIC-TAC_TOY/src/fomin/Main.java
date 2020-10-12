@@ -1,10 +1,11 @@
 package fomin;
 
 public class Main {
+    static StartWindow startWindow;
     static GameWindow window;
 
     public static void main(String[] args) {
-        window = new GameWindow();
+        startWindow = new StartWindow();
     }
 
     static void newGame() {
