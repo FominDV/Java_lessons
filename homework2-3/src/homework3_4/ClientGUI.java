@@ -38,7 +38,7 @@ public class ClientGUI extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(() -> new ClientGUI());
     }
 
-    private ClientGUI() {
+    ClientGUI() {
         new ExceptionForChat(this);
         setTitle("Client Chat");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
