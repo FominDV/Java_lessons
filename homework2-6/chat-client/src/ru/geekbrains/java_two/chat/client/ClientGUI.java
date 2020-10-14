@@ -58,6 +58,8 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
                 "user_with_an_exceptionally_long_name_in_this_chat"};
         userList.setListData(users);
         log.setEditable(false);
+        log.setLineWrap(true);
+        log.setWrapStyleWord(true);
         scrollUser.setPreferredSize(new Dimension(150, 0));
         cbAlwaysOnTop.addActionListener(this);
         btnSend.addActionListener(this);
