@@ -65,7 +65,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         btnSend.addActionListener(this);
         tfMessage.addActionListener(this);
         btnLogin.addActionListener(this);
-
+        btnDisconnect.addActionListener(this);
         panelTop.add(tfIPAddress);
         panelTop.add(tfPort);
         panelTop.add(cbAlwaysOnTop);
@@ -81,6 +81,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         add(panelTop, BorderLayout.NORTH);
         add(panelBottom, BorderLayout.SOUTH);
         setVisible(true);
+        panelBottom.setVisible(false);
     }
 
     @Override
@@ -92,6 +93,10 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
             sendMessage();
         } else if (src == btnLogin) {
             connect();
+        } else if (src == btnDisconnect) {
+            panelBottom.setVisible(false);
+            panelTop.setVisible(true);
+            socketThread.close();
         } else {
             throw new RuntimeException("Unknown source: " + src);
         }
@@ -101,6 +106,8 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         try {
             Socket socket = new Socket(tfIPAddress.getText(), Integer.parseInt(tfPort.getText()));
             socketThread = new SocketThread(this, "Client: " + tfLogin.getText(), socket);
+            panelTop.setVisible(false);
+            panelBottom.setVisible(true);
         } catch (IOException e) {
             showException(Thread.currentThread(), e);
         }
@@ -115,10 +122,9 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         msg = editMessage(msg, username);
         try {
             socketThread.sendMessage(msg);
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Disconnect");
+            JOptionPane.showMessageDialog(null, "Disconnect");
         }
 //        wrtMsgToLogFile(msg, username);
     }

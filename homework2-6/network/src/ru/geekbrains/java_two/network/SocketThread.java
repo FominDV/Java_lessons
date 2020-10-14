@@ -30,7 +30,7 @@ public class SocketThread extends Thread {
             listener.onSocketReady(this, socket);
             while (!isInterrupted()) {
                 String msg = in.readUTF();
-                    listener.onReceiveString(this, socket, msg);
+                listener.onReceiveString(this, socket, msg);
             }
         } catch (IOException e) {
             listener.onSocketException(this, e);
