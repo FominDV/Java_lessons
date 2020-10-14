@@ -64,11 +64,13 @@ public class GameWindow extends JFrame {
     }
 
     JLabel ending = new JLabel();
-    JPanel endButtons = new JPanel(new GridLayout(1, 2));
+    JPanel endButtons = new JPanel(new GridLayout(2, 1));
+    JPanel endButtonsBottom = new JPanel(new GridLayout(1, 2));
     Font endText = new Font("SANS_SERIF", Font.BOLD, 100);
     Font endButton = new Font("SANS_SERIF", Font.BOLD, 60);
     JButton exit = new JButton("Exit");
     JButton restart = new JButton("Restart");
+    JButton newParametersGame = new JButton("New Game");
 
     protected void endGame(String word) {
         map.setVisible(false);
@@ -78,15 +80,19 @@ public class GameWindow extends JFrame {
         add(ending, BorderLayout.CENTER);
         exit.setFont(endButton);
         restart.setFont(endButton);
+        newParametersGame.setFont((endButton));
         setActionsEndingButtons();
-        endButtons.add(exit);
-        endButtons.add(restart);
+        endButtonsBottom.add(restart);
+        endButtonsBottom.add(exit);
+        endButtons.add(newParametersGame);
+        endButtons.add(endButtonsBottom);
         add(endButtons, BorderLayout.SOUTH);
     }
 
     protected void setActionsEndingButtons() {
         exit.addActionListener(e -> System.exit(0));
         restart.addActionListener(e -> Main.newGame());
+        newParametersGame.addActionListener(e->Main.newParametersGame());
     }
 }
 
