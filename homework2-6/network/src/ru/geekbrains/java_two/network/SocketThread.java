@@ -59,6 +59,7 @@ public class SocketThread extends Thread {
     public synchronized void close() {
         interrupt();
         try {
+            out.close();
             sockets.remove(this);
             socket.close();
         } catch (IOException e) {

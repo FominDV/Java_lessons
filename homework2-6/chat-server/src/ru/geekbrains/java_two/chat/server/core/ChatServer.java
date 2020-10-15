@@ -39,8 +39,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     /**
      * Server methods
-     *
-     * */
+     */
 
     @Override
     public void onServerStart(ServerSocketThread thread) {
@@ -80,8 +79,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     /**
      * Socket methods
-     *
-     * */
+     */
 
     @Override
     public synchronized void onSocketStart(SocketThread thread, Socket socket) {
@@ -103,8 +101,9 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     @Override
     public synchronized void onReceiveString(SocketThread thread, Socket socket, String msg) {
-        for(int i=0;i< SocketThread.sockets.size();i++) {
-            SocketThread.sockets.get(i).sendMessage(msg);
+        for (int i = 0; i < SocketThread.sockets.size(); i++) {
+            if (!SocketThread.sockets.get(i).equals(thread))
+                SocketThread.sockets.get(i).sendMessage(msg);
         }
     }
 
