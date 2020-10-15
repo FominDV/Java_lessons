@@ -97,7 +97,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         } else if (src == btnDisconnect) {
             panelBottom.setVisible(false);
             panelTop.setVisible(true);
-            socketThread.interrupt();
+            socketThread.close();
         } else {
             throw new RuntimeException("Unknown source: " + src);
         }
