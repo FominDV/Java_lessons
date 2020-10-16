@@ -15,6 +15,9 @@ public class InterGame {
             case 2:
                 ArtificialIntelligenceLevel2.turnAI2(boxes, pointsToWin,2);
                 break;
+            case 3:
+                ArtificialIntelligenceLevel3.turnAI3(boxes, pointsToWin);
+                break;
         }
     }
 
