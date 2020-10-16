@@ -84,6 +84,8 @@ public class StartWindow extends JFrame implements ActionListener {
         for (int i = 0; i < menuRowPanel.length; i++) {
             menuPanel.add(menuRowPanel[i]);
         }
+        greaterLabel.setForeground(new Color(0, 128, 128));
+        menuPanel.setBackground(new Color(0,128,128));
         add(greaterLabel, BorderLayout.NORTH);
         add(menuPanel, BorderLayout.CENTER);
         add(startButton, BorderLayout.SOUTH);
