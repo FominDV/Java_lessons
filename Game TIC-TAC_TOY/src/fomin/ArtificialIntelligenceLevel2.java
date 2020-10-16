@@ -24,7 +24,7 @@ public class ArtificialIntelligenceLevel2 extends ArtificialIntelligenceLevel1 {
     protected static boolean isTurnAI2Realization(Boxes[][] boxes, int maxPreVictory, int pointsToWin) {
         swapSymbols();
         int newPointsToWin;
-        for (int preVictory = maxPreVictory; preVictory >= 1; preVictory--) {
+        for (int preVictory = maxPreVictory; preVictory < pointsToWin; preVictory++) {
             newPointsToWin = pointsToWin - preVictory;
             if (isMadeLineTurnImportant(boxes, pointsToWin - preVictory + 1)) {
                 swapSymbols();
