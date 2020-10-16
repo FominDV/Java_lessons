@@ -95,16 +95,16 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         } else if (src == btnLogin) {
             connect();
         } else if (src == btnDisconnect) {
-            panelBottom.setVisible(false);
-            panelTop.setVisible(true);
             socketThread.close();
         } else {
             throw new RuntimeException("Unknown source: " + src);
         }
     }
-
+    protected void setPanelsVisibleByDisconnect(){
+        panelBottom.setVisible(false);
+        panelTop.setVisible(true);
+    }
     private void sendMessageIntoLog() {
-
         String msg = tfMessage.getText();
         Date date = new Date();
         log.append(format("YOU(%tD %tR):\n%s\n", date, date, msg));
@@ -197,6 +197,8 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     @Override
     public void onSocketStop(SocketThread thread) {
+        setPanelsVisibleByDisconnect();
+
         putLog("Stop");
     }
 
@@ -212,6 +214,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     @Override
     public void onSocketException(SocketThread thread, Exception exception) {
+        if(!socketThread.isInterrupted())
         showException(thread, exception);
     }
 }

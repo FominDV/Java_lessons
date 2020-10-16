@@ -9,8 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Vector;
 
 public class ChatServer implements ServerSocketThreadListener, SocketThreadListener {
+    public static Vector<SocketThread> sockets = new Vector<>();
     ServerSocketThread thread;
     private final DateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm:ss: ");
 
@@ -49,7 +51,11 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
     @Override
     public void onServerStop(ServerSocketThread thread) {
         putLog("Server thread stopped");
-
+        for (int i = 0; i <= sockets.size(); i++) {
+            sockets.get(0).close();
+            sockets.remove(0);
+        }
+        thread.interrupt();
     }
 
     @Override
@@ -68,8 +74,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
     public void onSocketAccepted(ServerSocketThread thread, ServerSocket server, Socket socket) {
         putLog("Client connected");
         String name = "SocketThread " + socket.getInetAddress() + ":" + socket.getPort();
-        new SocketThread(this, name, socket);
-
+        sockets.addElement(new SocketThread(this, name, socket));
     }
 
     @Override
@@ -90,7 +95,8 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
     @Override
     public synchronized void onSocketStop(SocketThread thread) {
         putLog("Socket stopped");
-
+        sockets.remove(thread);
+        thread.interrupt();
     }
 
     @Override
@@ -101,9 +107,9 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     @Override
     public synchronized void onReceiveString(SocketThread thread, Socket socket, String msg) {
-        for (int i = 0; i < SocketThread.sockets.size(); i++) {
-            if (!SocketThread.sockets.get(i).equals(thread))
-                SocketThread.sockets.get(i).sendMessage(msg);
+        for (int i = 0; i < sockets.size(); i++) {
+            if (!sockets.get(i).equals(thread))
+                sockets.get(i).sendMessage(msg);
         }
     }
 

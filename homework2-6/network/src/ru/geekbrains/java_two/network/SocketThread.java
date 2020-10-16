@@ -10,13 +10,11 @@ public class SocketThread extends Thread {
     private final Socket socket;
     private DataOutputStream out;
 
-    public static Vector<SocketThread> sockets = new Vector<>();
 
     public SocketThread(SocketThreadListener listener, String name, Socket socket) {
         super(name);
         this.socket = socket;
         this.listener = listener;
-        sockets.addElement(this);
         start();
     }
 
@@ -33,7 +31,7 @@ public class SocketThread extends Thread {
                 listener.onReceiveString(this, socket, msg);
             }
         } catch (IOException e) {
-            if (!isInterrupted()) listener.onSocketException(this, e);
+            listener.onSocketException(this, e);
         } finally {
             try {
                 socket.close();
@@ -59,8 +57,6 @@ public class SocketThread extends Thread {
     public synchronized void close() {
         interrupt();
         try {
-            out.close();
-            sockets.remove(this);
             socket.close();
         } catch (IOException e) {
             listener.onSocketException(this, e);
