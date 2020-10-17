@@ -23,7 +23,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
         return false;
     }
 
-    private static boolean isMadeLineTurn(Boxes[][] boxes, int i, int pointsToWin, int needingPoints) {
+    protected static boolean isMadeLineTurn(Boxes[][] boxes, int i, int pointsToWin, int needingPoints) {
         pointsHorizontal = 0;
         pointsVertical = 0;
         for (int j = 0; j < boxes.length; j++) {
@@ -64,7 +64,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
         }
     }
 
-    private static boolean isEmptyNextBoxForLine(Boxes[][] boxes, int i, int j, char side, int needingPoints) {
+    protected static boolean isEmptyNextBoxForLine(Boxes[][] boxes, int i, int j, char side, int needingPoints) {
         int points;
         switch (side) {
             case 'n':
@@ -100,7 +100,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
         }
     }
 
-    private static boolean isMadeLineTurnImportant(Boxes[][] boxes, int pointsToWin) {
+    protected static boolean isMadeLineTurnImportant(Boxes[][] boxes, int pointsToWin) {
         for (int i = 0; i < boxes.length; i++) {
             pointsHorizontal = 0;
             pointsVertical = 0;
@@ -155,7 +155,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
         return false;
     }
 
-    private static boolean isMadeDiagonalTurnImportant(Boxes[][] boxes, int pointsToWin) {
+    protected static boolean isMadeDiagonalTurnImportant(Boxes[][] boxes, int pointsToWin) {
         for (int i = 0; i < boxes.length; i++) {
             pointsMainDiagonal1 = 0;
             pointsMainDiagonal2 = 0;
@@ -257,7 +257,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
         return false;
     }
 
-    private static boolean isMadeDiagonalTurn(Boxes[][] boxes, int i, int pointsToWin, int needingPoints) {
+    protected static boolean isMadeDiagonalTurn(Boxes[][] boxes, int i, int pointsToWin, int needingPoints) {
         pointsMainDiagonal1 = 0;
         pointsMainDiagonal2 = 0;
         pointsMainDiagonal11 = 0;
@@ -320,7 +320,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
     }
 
 
-    private static boolean isEmptyNextBoxForDiagonal(Boxes[][] boxes, int i, int j, char side, int needingPoints) {
+    protected static boolean isEmptyNextBoxForDiagonal(Boxes[][] boxes, int i, int j, char side, int needingPoints) {
         int pointsI;
         int pointsJ;
         switch (side) {

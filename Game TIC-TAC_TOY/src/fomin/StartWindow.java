@@ -11,11 +11,11 @@ import java.awt.event.ActionListener;
 public class StartWindow extends JFrame implements ActionListener {
     static final String[] NAMES_OF_LEVELS = {"EASY", "MEDIUM", "HARD", "NIGHTMARE"};
     static final int WIDTH = 1000;
-    static final int HEIGHT = 1000;
+    static final int HEIGHT = 800;
     private JPanel radioButtonsPanel = new JPanel(new FlowLayout());
     private JPanel radioButtonsSymbolPanel = new JPanel(new FlowLayout());
-    private JPanel[] menuRowPanel = new JPanel[8];
-    private JPanel menuPanel = new JPanel(new GridLayout(8, 1));
+    private JPanel[] menuRowPanel = new JPanel[5];
+    private JPanel menuPanel = new JPanel(new GridLayout(5, 1));
     static JButton startButton = new JButton("START");
     static ButtonGroup buttonGroup = new ButtonGroup();
     static ButtonGroup buttonSymbolGroup = new ButtonGroup();
@@ -54,13 +54,14 @@ public class StartWindow extends JFrame implements ActionListener {
         symbolLabel.setFont(textMenuFont);
         startButton.setFont(textButton);
         for (int i = 0; i < menuRowPanel.length; i++) {
-            menuRowPanel[i] = new JPanel();
+            menuRowPanel[i] = new JPanel(new FlowLayout());
         }
-        menuRowPanel[0].add(sizeLabel);
+
+        menuRowPanel[1].add(sizeLabel);
         menuRowPanel[1].add(sizeTF);
         menuRowPanel[2].add(numberOfSymbolsToWinLabel);
-        menuRowPanel[3].add(numberOfSymbolsToWinTF);
-        menuRowPanel[4].add(levelLabel);
+        menuRowPanel[2].add(numberOfSymbolsToWinTF);
+        menuRowPanel[3].add(levelLabel);
         for (int i = 1; i <= levelRadioButton.length; i++) {
             levelRadioButton[i - 1] = new JRadioButton(NAMES_OF_LEVELS[i - 1]);
             levelRadioButton[i - 1].setFont(textMenuFont);
@@ -68,8 +69,8 @@ public class StartWindow extends JFrame implements ActionListener {
             radioButtonsPanel.add(levelRadioButton[i - 1]);
         }
         levelRadioButton[2].setSelected(true);
-        menuRowPanel[5].add(radioButtonsPanel);
-        menuRowPanel[6].add(symbolLabel);
+        menuRowPanel[3].add(radioButtonsPanel);
+        menuRowPanel[4].add(symbolLabel);
         symbolRadioButton[0] = new JRadioButton("x");
         symbolRadioButton[1] = new JRadioButton("O");
         symbolRadioButton[0].setFont(textMenuFont);
@@ -79,10 +80,12 @@ public class StartWindow extends JFrame implements ActionListener {
         symbolRadioButton[0].setSelected(true);
         radioButtonsSymbolPanel.add(symbolRadioButton[0]);
         radioButtonsSymbolPanel.add(symbolRadioButton[1]);
-        menuRowPanel[7].add(radioButtonsSymbolPanel);
+        menuRowPanel[4].add(radioButtonsSymbolPanel);
         for (int i = 0; i < menuRowPanel.length; i++) {
             menuPanel.add(menuRowPanel[i]);
         }
+        greaterLabel.setForeground(new Color(0, 128, 128));
+        menuPanel.setBackground(new Color(0,128,128));
         add(greaterLabel, BorderLayout.NORTH);
         add(menuPanel, BorderLayout.CENTER);
         add(startButton, BorderLayout.SOUTH);

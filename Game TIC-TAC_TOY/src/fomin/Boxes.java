@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Boxes extends JButton {
+    protected static boolean flagTurnAI2=false;
     protected char symbol;
     static final char EMPTY = 'e';
-    protected static  char USER;
-    protected static  char MACHINE;
+    protected static char USER;
+    protected static char MACHINE;
     private int SIZE_OF_TEXT_INTO_BOX = getFontSize();
 
     //'e' is 'empty'
@@ -25,8 +26,13 @@ public class Boxes extends JButton {
     }
 
     protected void setCircle() {
-        symbol = MACHINE;
-        setText(String.valueOf(MACHINE));
+        if(flagTurnAI2){
+            symbol = USER;
+            setText(String.valueOf(USER));
+        }else{
+            symbol = MACHINE;
+            setText(String.valueOf(MACHINE));
+        }
     }
 
     protected void setCross() {
