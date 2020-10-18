@@ -5,12 +5,14 @@ import ru.geekbrains.java_two.network.SocketThread;
 import ru.geekbrains.java_two.network.SocketThreadListener;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Date;
 
 import static java.lang.String.format;
 
@@ -194,8 +196,12 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         if(partsOfMessage[0].equals(Library.AUTH_ACCEPT)&&partsOfMessage.length==2) return format("You are logged in. Your nickname is \"%s\"",partsOfMessage[1]);
         if(partsOfMessage[0].equals(Library.AUTH_DENIED)&&partsOfMessage.length==1) return "Login or password is wrong!";
         if(partsOfMessage[0].equals(Library.MSG_FORMAT_ERROR)&&partsOfMessage.length==2) return format("Error! \"%s\" is not valid format!",partsOfMessage[1]);
-        if(partsOfMessage[0].equals(Library.TYPE_BROADCAST)&&partsOfMessage.length==4) return format("%s(%s):\n%s",partsOfMessage[2],partsOfMessage[1], partsOfMessage[3]);
-        return "";
+        if(partsOfMessage[0].equals(Library.TYPE_BROADCAST)&&partsOfMessage.length==4) return format("%s(%s):\n%s",partsOfMessage[2],getNowDate(), partsOfMessage[3]);
+        return "Error of the formatting of server message!";
+    }
+    private String getNowDate(){
+        Date date = new Date();
+        return format("%tF %tR", date, date);
     }
 
     @Override

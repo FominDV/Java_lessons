@@ -1,13 +1,15 @@
 package ru.geekbrains.java_two.chat.common;
 
+import java.util.Date;
+
 public class Library {
     /*
-    * /auth_request±login±password
-    * /auth_accept±nickname
-    * /auth_denied
-    * /broadcast±time±src±msg
-    * /msg_format_error
-    * */
+     * /auth_request±login±password
+     * /auth_accept±nickname
+     * /auth_denied
+     * /broadcast±time±src±msg
+     * /msg_format_error
+     * */
 
     public static final String DELIMITER = "±";
     public static final String AUTH_REQUEST = "/auth_request";
