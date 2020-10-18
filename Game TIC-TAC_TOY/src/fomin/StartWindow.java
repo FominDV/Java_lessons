@@ -1,5 +1,6 @@
 package fomin;
-
+//Это окно с выбором параметром для игры. Тут же происходит проверка на допустимые значения и кнопка, вызывающая следующий режим игры с выбранными параметрами.
+//Тут же передаются значения татическим переменным в Boxes и InterGame
 import com.sun.org.apache.bcel.internal.generic.FADD;
 import javafx.scene.control.RadioButton;
 

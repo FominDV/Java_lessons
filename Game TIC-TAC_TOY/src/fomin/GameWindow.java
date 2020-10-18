@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+//Это непосредственно игровое поле, а так же оно преващается в финальное поле, где мы смодем переиграть партию, вернуться к стартовому окну с заданием параметров или выйти.
+//Именно тут создаётся само поле и все кнопки. Данный класс запускает последовательность действий игры и проверок, обращаясь к статическим методам InterGame.
 public class GameWindow extends JFrame {
     protected static int sizeOfMap = 10;
     protected static int height = 1000;

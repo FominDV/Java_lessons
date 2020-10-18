@@ -1,7 +1,7 @@
 package fomin;
 
 import java.util.Random;
-
+//Данный ИИ просто рандомно ставит символ в свободную ячейку, избегая периметра поля.
 public class ArtificialIntelligenceLevel0 {
     static Random random = new Random();
 

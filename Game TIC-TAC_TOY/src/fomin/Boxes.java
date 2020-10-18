@@ -2,7 +2,7 @@ package fomin;
 
 import javax.swing.*;
 import java.awt.*;
-
+//Этот класс описывает наши игровые ячейки-кнопки, расширяет JButton. Сдесь хранятся изначальные значения символов, а так же методы по работе с данными в каждом экземпляре.
 public class Boxes extends JButton {
     protected static boolean flagTurnAI2=false;
     protected char symbol;

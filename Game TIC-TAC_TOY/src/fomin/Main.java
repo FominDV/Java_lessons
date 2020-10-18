@@ -1,5 +1,5 @@
 package fomin;
-
+//Содержит методы для преключения между режимами игры. Запускает стартовое окно с выбором параметров.
 public class Main {
     static StartWindow startWindow;
     static GameWindow window;

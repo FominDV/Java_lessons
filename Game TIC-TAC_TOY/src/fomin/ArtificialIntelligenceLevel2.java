@@ -1,5 +1,5 @@
 package fomin;
-
+//Тут появляется воля к победе у машины. Она в приоритете пытается собрать совственную выигрышную комбинацию, но не забывает своевременно блокировать комбинации пользователя за 2 хода до предполагаемой победы
 public class ArtificialIntelligenceLevel2 extends ArtificialIntelligenceLevel1 {
 
     protected static void turnAI2(Boxes[][] boxes, int pointsToWin, int maxVerifyPoints) {
