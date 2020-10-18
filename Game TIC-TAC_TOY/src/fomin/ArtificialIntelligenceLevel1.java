@@ -1,5 +1,5 @@
 package fomin;
-//Данный ИИ блогирует выигрышные комбинации пользователя за 2 хода до предпологаемой победы. Проверяет всё строго в необходимой хронологии.
+//Данный ИИ блокирует выигрышные комбинации пользователя за 2 хода до предпологаемой победы. Проверяет всё строго в необходимой хронологии.
 public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
     private static int pointsHorizontal, pointsVertical, pointsMainDiagonal1, pointsMainDiagonal2, pointsMainDiagonal11, pointsMainDiagonal22;
 
