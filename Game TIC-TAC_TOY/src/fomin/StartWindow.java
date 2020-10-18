@@ -1,5 +1,5 @@
 package fomin;
-//Это окно с выбором параметром для игры. Тут же происходит проверка на допустимые значения и кнопка, вызывающая следующий режим игры с выбранными параметрами.
+//Это окно с выбором параметром для игры: символы, размер карты, количество символов для победы, уровень сложности. Тут же происходит проверка на допустимые значения и кнопка, вызывающая следующий режим игры с выбранными параметрами.
 //Тут же передаются значения татическим переменным в Boxes и InterGame
 import com.sun.org.apache.bcel.internal.generic.FADD;
 import javafx.scene.control.RadioButton;
@@ -57,7 +57,7 @@ public class StartWindow extends JFrame implements ActionListener {
         for (int i = 0; i < menuRowPanel.length; i++) {
             menuRowPanel[i] = new JPanel(new FlowLayout());
         }
-
+        //рисуем графические элементы
         menuRowPanel[1].add(sizeLabel);
         menuRowPanel[1].add(sizeTF);
         menuRowPanel[2].add(numberOfSymbolsToWinLabel);
@@ -94,14 +94,14 @@ public class StartWindow extends JFrame implements ActionListener {
         sizeTF.setText(null);
         numberOfSymbolsToWinTF.setText(null);
     }
-
+    //проверяем допустимость параметров и запускаем игровое поле
     @Override
     public void actionPerformed(ActionEvent e) {
         if (isSetValidValue()) {
             Main.newStartParametersGame();
         }
     }
-
+    //проверка введённых параметров
     private static boolean isSetValidValue() {
         int size = 0;
         int numberOfSymbols = 0;

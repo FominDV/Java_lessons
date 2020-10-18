@@ -1,5 +1,7 @@
 package fomin;
+
 //Тут происходит основная логика игры: совершается ход машины, проверка на победу, хранение статических ключевых параметров. По сути это набор интсрументов статических для базовой структуры игры.
+/*Содержит в себе статические значения количества символов для победы и уровень сложности. Раскрашивает выигрушную комбинацию для наглядности*/
 public class InterGame {
     protected static int pointsToWin = 5;
     protected static int levelAI = 1;
@@ -13,7 +15,7 @@ public class InterGame {
                 ArtificialIntelligenceLevel1.turnAI1(boxes, pointsToWin);
                 break;
             case 2:
-                ArtificialIntelligenceLevel2.turnAI2(boxes, pointsToWin,2);
+                ArtificialIntelligenceLevel2.turnAI2(boxes, pointsToWin, 2);
                 break;
             case 3:
                 ArtificialIntelligenceLevel3.turnAI3(boxes, pointsToWin);
@@ -114,7 +116,7 @@ public class InterGame {
         }
         return false;
     }
-
+    //раскрашиваем выигрушную комбинацию
     private static void setHorizontalColor(Boxes[][] boxes, int i, int j, char symbol) {
         for (int k = 0; k < pointsToWin; k++) {
             boxes[i][j - k].setColor();

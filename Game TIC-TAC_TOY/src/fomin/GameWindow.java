@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 //Это непосредственно игровое поле, а так же оно преващается в финальное поле, где мы сможем переиграть партию, вернуться к стартовому окну с заданием параметров или выйти.
 //Именно тут создаётся само поле и все кнопки. Данный класс запускает последовательность действий игры и проверок, обращаясь к статическим методам InterGame.
+/*Содержит свойства размеров окна и размера поля*/
 public class GameWindow extends JFrame {
     protected static int sizeOfMap = 10;
     protected static int height = 1000;
@@ -25,7 +26,7 @@ public class GameWindow extends JFrame {
 
     JPanel map = new JPanel(new GridLayout(sizeOfMap, sizeOfMap));
     Boxes boxes[][] = new Boxes[sizeOfMap][sizeOfMap];
-
+    //Рисуем игровое поле из ячеек-кнопок
     protected void makeMap() {
         for (int i = 0; i < boxes.length; i++) {
             for (int j = 0; j < boxes.length; j++) {
@@ -33,6 +34,7 @@ public class GameWindow extends JFrame {
                 box.setName(i + "" + j);
                 boxes[i][j] = box;
                 box.addActionListener(new ActionListener() {
+                    //Запускаем алгоритм проверки исхода игры после каждого хода пользователя, запускаем проверку на возможный конец игры
                     public void actionPerformed(ActionEvent e) {
                         if (box.isEmpty()) {
                             box.setCross();
@@ -40,15 +42,18 @@ public class GameWindow extends JFrame {
                             if (InterGame.isVictory(boxes, Boxes.USER)) {
                                 JOptionPane.showMessageDialog(null, "It was last turn!");
                                 endGame("VICTORY");
+                                return;
                             }
                             if (InterGame.isFullMap(boxes)) {
                                 JOptionPane.showMessageDialog(null, "It was last turn!");
                                 endGame("draw game");
+                                return;
                             } else {
                                 InterGame.machineTurn(boxes);
                                 if (InterGame.isVictory(boxes, Boxes.MACHINE)) {
                                     JOptionPane.showMessageDialog(null, "It was last turn!");
                                     endGame("LOSS");
+                                    return;
                                 }
                                 if (InterGame.isFullMap(boxes)) {
                                     JOptionPane.showMessageDialog(null, "It was last turn!");
@@ -72,7 +77,7 @@ public class GameWindow extends JFrame {
     JButton exit = new JButton("Exit");
     JButton restart = new JButton("Restart");
     JButton newParametersGame = new JButton("New Game");
-
+    //переделываем наше окно по завершению игры
     protected void endGame(String word) {
         map.setVisible(false);
         ending.setFont(endText);
@@ -89,7 +94,7 @@ public class GameWindow extends JFrame {
         endButtons.add(endButtonsBottom);
         add(endButtons, BorderLayout.SOUTH);
     }
-
+    //настраиваем обработчик событий к кнопкам финального окна
     protected void setActionsEndingButtons() {
         exit.addActionListener(e -> System.exit(0));
         restart.addActionListener(e -> Main.newGame());
