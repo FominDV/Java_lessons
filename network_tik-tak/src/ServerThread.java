@@ -34,8 +34,17 @@ public class ServerThread extends Thread implements SocketThreadListener {
     }
 
     @Override
-    public void onReceiveString(ThreadSocket thread, String msg) {
-        for(int i=0;i<threadSockets.size();i++) {
+    public void onReceiveString(ThreadSocket thread, String msg, int id) {
+        Server.setSymbol(id, msg);
+        if (Server.isVictory(id)) {
+            thread.sendMessage(Library.getMessageForSendingVictory(msg));
+            for (int i = 0; i < threadSockets.size(); i++) {
+                if (!thread.equals(threadSockets.get(i)))
+                    threadSockets.get(i).sendMessage(Library.getMessageForSendingLose(msg));
+            }
+            return;
+        }
+        for (int i = 0; i < threadSockets.size(); i++) {
             if (!thread.equals(threadSockets.get(i))) threadSockets.get(i).sendMessage(msg);
         }
     }

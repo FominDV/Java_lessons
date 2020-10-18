@@ -33,7 +33,7 @@ public class ThreadSocket extends Thread {
                 exception.printStackTrace();
                 continue;
             }
-            if (!msg.equals("")) listener.onReceiveString(this, msg);
+            if (!msg.equals("")) listener.onReceiveString(this, msg, userIndex);
         }
     }
 

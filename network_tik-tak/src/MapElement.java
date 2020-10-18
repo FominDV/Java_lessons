@@ -26,7 +26,7 @@ public class MapElement extends JButton implements ActionListener {
         if (map.flag == true && symbolOfElement == empty) {
             if (index == 1) setUser1Symbol();
             else setUser2Symbol();
-            map.threadSocket.sendMessage(Library.getMessageForSending(coordinates));
+            map.threadSocket.sendMessage(Library.getMessageForSendingCoordinates(coordinates));
             map.flag = false;
             map.miniLog.setText("Your opponent's turn!");
         }

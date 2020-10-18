@@ -49,14 +49,24 @@ public class GameMap extends JFrame implements SocketThreadListener {
     }
 
     @Override
-    public void onReceiveString(ThreadSocket thread, String msg) {
+    public void onReceiveString(ThreadSocket thread, String msg, int id) {
         String[] coordinatesString = msg.split(Library.DELIMITER);
-        int[] coordinates = new int[2];
-        coordinates[0] = Integer.parseInt(coordinatesString[0]);
-        coordinates[1] = Integer.parseInt(coordinatesString[1]);
-        if (userIndex == 2) mapElements[coordinates[0]][coordinates[1]].setUser1Symbol();
-        else mapElements[coordinates[0]][coordinates[1]].setUser2Symbol();
-        flag = true;
-        miniLog.setText("You turn!");
+        if (coordinatesString.length == 3) {
+            int[] coordinates = new int[2];
+            coordinates[1] = Integer.parseInt(coordinatesString[0]);
+            coordinates[2] = Integer.parseInt(coordinatesString[1]);
+            if (userIndex == 2) mapElements[coordinates[0]][coordinates[1]].setUser1Symbol();
+            else mapElements[coordinates[0]][coordinates[1]].setUser2Symbol();
+            if (coordinatesString[0].equals(Library.LOSE)) JOptionPane.showMessageDialog(null, "You Lose");
+            if (coordinatesString[0].equals(Library.VICTORY)) JOptionPane.showMessageDialog(null, "WIN");
+        } else {
+            int[] coordinates = new int[2];
+            coordinates[0] = Integer.parseInt(coordinatesString[0]);
+            coordinates[1] = Integer.parseInt(coordinatesString[1]);
+            if (userIndex == 2) mapElements[coordinates[0]][coordinates[1]].setUser1Symbol();
+            else mapElements[coordinates[0]][coordinates[1]].setUser2Symbol();
+            flag = true;
+            miniLog.setText("You turn!");
+        }
     }
 }
