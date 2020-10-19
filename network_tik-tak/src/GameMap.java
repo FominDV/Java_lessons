@@ -4,7 +4,7 @@ import java.net.Socket;
 
 public class GameMap extends JFrame implements SocketThreadListener {
     public ThreadSocket threadSocket;
-    public static int sizeOfMap;
+    public static int sizeOfMap = 3;
     private static int WIDTH = 800;
     private static int HEIGHT = 800;
     private JPanel map;
@@ -13,15 +13,14 @@ public class GameMap extends JFrame implements SocketThreadListener {
     private int userIndex;
     public boolean flag = false;
 
-    public GameMap(int sizeOfMap, int userIndex, Socket socket) {
+    public GameMap( int userIndex, Socket socket) {
         this.userIndex = userIndex;
         if (userIndex == 1) flag = true;
-        this.sizeOfMap = sizeOfMap;
         mapElements = new MapElement[sizeOfMap][sizeOfMap];
         SwingUtilities.invokeLater(() -> {
             initializationElements();
         });
-        threadSocket = new ThreadSocket(userIndex, socket, this);
+        threadSocket = new ThreadSocket(this.userIndex, socket, this);
     }
 
     private void initializationElements() {
@@ -53,12 +52,16 @@ public class GameMap extends JFrame implements SocketThreadListener {
         String[] coordinatesString = msg.split(Library.DELIMITER);
         if (coordinatesString.length == 3) {
             int[] coordinates = new int[2];
-            coordinates[1] = Integer.parseInt(coordinatesString[0]);
-            coordinates[2] = Integer.parseInt(coordinatesString[1]);
-            if (userIndex == 2) mapElements[coordinates[0]][coordinates[1]].setUser1Symbol();
-            else mapElements[coordinates[0]][coordinates[1]].setUser2Symbol();
-            if (coordinatesString[0].equals(Library.LOSE)) JOptionPane.showMessageDialog(null, "You Lose");
-            if (coordinatesString[0].equals(Library.VICTORY)) JOptionPane.showMessageDialog(null, "WIN");
+            coordinates[0] = Integer.parseInt(coordinatesString[1]);
+            coordinates[1] = Integer.parseInt(coordinatesString[2]);
+            if (coordinatesString[0].equals(Library.LOSE)) {
+                miniLog.setText("LOSE");
+                if (userIndex == 2) mapElements[coordinates[0]][coordinates[1]].setUser1Symbol();
+                else mapElements[coordinates[0]][coordinates[1]].setUser2Symbol();
+            }
+            if (coordinatesString[0].equals(Library.VICTORY)) {
+                miniLog.setText("VICTORY");
+            }
         } else {
             int[] coordinates = new int[2];
             coordinates[0] = Integer.parseInt(coordinatesString[0]);
@@ -69,4 +72,25 @@ public class GameMap extends JFrame implements SocketThreadListener {
             miniLog.setText("You turn!");
         }
     }
+
+    public boolean isVictory(int id) {
+
+        return false;
+    }
+
+    public void setSymbol(int id, String msg) {
+
+    }
+
+    public boolean isLineVictory(char symbol) {
+
+        return false;
+    }
+
+    public boolean isDiagonalVictory(char symbol) {
+
+        return false;
+    }
 }
+
+

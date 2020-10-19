@@ -9,11 +9,11 @@ public class Library {
     }
 
     static String getMessageForSendingLose(String msg) {
-        return LOSE + msg;
+        return LOSE +DELIMITER+ msg;
     }
 
     static String getMessageForSendingVictory(String msg) {
-        return VICTORY + msg;
+        return VICTORY+DELIMITER + msg;
     }
 
 }

@@ -49,7 +49,7 @@ public class StartWindow extends JFrame implements ActionListener {
         }
 
 
-        new GameMap(3, Integer.parseInt(id.getText()), socket);
+        new GameMap(Integer.parseInt(id.getText()), socket);
 
         this.setVisible(false);
     }
