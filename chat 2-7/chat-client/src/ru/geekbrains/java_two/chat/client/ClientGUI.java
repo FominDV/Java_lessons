@@ -187,7 +187,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     @Override
     public void onReceiveString(SocketThread thread, Socket socket, String msg) {
-
+putLog(editMessage(msg));
     }
 
     private String editMessage(String msg) {
