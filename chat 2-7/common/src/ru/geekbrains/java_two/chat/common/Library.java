@@ -1,13 +1,17 @@
 package ru.geekbrains.java_two.chat.common;
 
+import java.util.Date;
+
+import static java.lang.String.format;
+
 public class Library {
     /*
-    * /auth_request±login±password
-    * /auth_accept±nickname
-    * /auth_denied
-    * /broadcast±time±src±msg
-    * /msg_format_error
-    * */
+     * /auth_request±login±password
+     * /auth_accept±nickname
+     * /auth_denied
+     * /broadcast±time±src±msg
+     * /msg_format_error
+     * */
 
     public static final String DELIMITER = "±";
     public static final String AUTH_REQUEST = "/auth_request";
@@ -33,8 +37,9 @@ public class Library {
     }
 
     public static String getTypeBroadcast(String src, String message) {
+        Date date = new Date();
         return TYPE_BROADCAST + DELIMITER + System.currentTimeMillis() +
-                DELIMITER + src + DELIMITER + message;
+                DELIMITER + src + DELIMITER + message + DELIMITER + format("%tF %tR", date, date);
     }
 
 
