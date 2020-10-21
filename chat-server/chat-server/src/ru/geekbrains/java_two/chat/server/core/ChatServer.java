@@ -79,9 +79,26 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
                 sendToAllAuthorizedClients(Library.getTypeBroadcast(
                         client.getNickname(), arr[1]));
                 break;
+            case Library.TYPE_PRIVATE:
+                sendToOneClient(arr[1], client, Library.getTypePrivate(client.getNickname(), arr[2]));
+                break;
             default:
                 client.msgFormatError(msg);
 
+        }
+    }
+
+    private void sendToOneClient(String destination, ClientThread src, String msg) {
+        for (int i = 0; i < clients.size(); i++){
+            ClientThread recipient = (ClientThread) clients.get(i);
+            if(recipient.getNickname().equals(destination)){
+                if(recipient.equals(src)){
+                    src.sendMessage(Library.getErrorBySendingYourself());
+                    return;
+                }
+                src.sendMessage(msg);
+                recipient.sendMessage(msg);
+            }
         }
     }
 
@@ -115,8 +132,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     /**
      * Server methods
-     *
-     * */
+     */
 
     @Override
     public void onServerStart(ServerSocketThread thread) {
@@ -160,8 +176,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
 
     /**
      * Socket methods
-     *
-     * */
+     */
 
     @Override
     public synchronized void onSocketStart(SocketThread thread, Socket socket) {
