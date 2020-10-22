@@ -5,6 +5,8 @@ import ru.geekbrains.java_two.network.SocketThread;
 import ru.geekbrains.java_two.network.SocketThreadListener;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +20,7 @@ import java.util.Arrays;
 public class ClientGUI extends JFrame implements ActionListener, Thread.UncaughtExceptionHandler, SocketThreadListener {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 300;
+    private final String cbPrivateText = "Send private message to ";
 
     private final JTextArea log = new JTextArea();
     private final JPanel panelTop = new JPanel(new GridLayout(2, 3));
@@ -28,12 +31,12 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     private final JTextField tfLogin = new JTextField("ivan");
     private final JPasswordField tfPassword = new JPasswordField("123");
     private final JButton btnLogin = new JButton("Login");
-
+    private final JPanel panelAllBottom = new JPanel(new GridLayout(2, 1));
     private final JPanel panelBottom = new JPanel(new BorderLayout());
     private final JButton btnDisconnect = new JButton("<html><b>Disconnect</b></html>");
     private final JTextField tfMessage = new JTextField();
     private final JButton btnSend = new JButton("Send");
-
+    private JCheckBox cbPrivate = new JCheckBox(cbPrivateText);
     private final JList<String> userList = new JList<>();
     private boolean shownIoErrors = false;
     private SocketThread socketThread;
@@ -65,8 +68,9 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         tfMessage.addActionListener(this);
         btnLogin.addActionListener(this);
         btnDisconnect.addActionListener(this);
-        panelBottom.setVisible(false);
-
+        panelAllBottom.add(cbPrivate);
+        panelAllBottom.add(panelBottom);
+        panelAllBottom.setVisible(false);
         panelTop.add(tfIPAddress);
         panelTop.add(tfPort);
         panelTop.add(cbAlwaysOnTop);
@@ -76,11 +80,16 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         panelBottom.add(btnDisconnect, BorderLayout.WEST);
         panelBottom.add(tfMessage, BorderLayout.CENTER);
         panelBottom.add(btnSend, BorderLayout.EAST);
-
+        userList.addListSelectionListener(e -> {
+            if (userList.getSelectedValue() == null)
+                cbPrivate.setText(cbPrivateText);
+            else
+                cbPrivate.setText(cbPrivateText + userList.getSelectedValue());
+        });
         add(scrollLog, BorderLayout.CENTER);
         add(scrollUser, BorderLayout.EAST);
         add(panelTop, BorderLayout.NORTH);
-        add(panelBottom, BorderLayout.SOUTH);
+        add(panelAllBottom, BorderLayout.SOUTH);
         setVisible(true);
     }
 
@@ -114,7 +123,16 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         if ("".equals(msg)) return;
         tfMessage.setText(null);
         tfMessage.grabFocus();
-        socketThread.sendMessage(Library.getTypeClientBcast(msg));
+        if (cbPrivate.isSelected()) {
+            if (!(userList.getSelectedValue() == null)) {
+                socketThread.sendMessage(Library.getTypeClientPrivate(userList.getSelectedValue(), msg));
+            }else {
+                putLog("ERROR");
+                cbPrivate.setSelected(false);
+            }
+        } else {
+            socketThread.sendMessage(Library.getTypeClientBcast(msg));
+        }
     }
 
     private void wrtMsgToLogFile(String msg, String username) {
@@ -176,6 +194,14 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
                 String[] usersArray = msg.split(Library.DELIMITER);
                 Arrays.sort(usersArray);
                 userList.setListData(usersArray);
+                if(userList.getSelectedValue()==null) userList.setSelectedIndex(0);
+                break;
+            case Library.TYPE_PRIVATE:
+                putLog(DATE_FORMAT.format(Long.parseLong(arr[1])) + "private from " +
+                        arr[2] + ": " + arr[3]);
+                break;
+            case Library.TYPE_ERROR_SENDING_YOURSELF:
+                putLog("You try to send message yourself!");
                 break;
             default:
                 throw new RuntimeException("Unknown message type: " + msg);
@@ -192,7 +218,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     /**
      * Socket thread listener methods
-     * */
+     */
 
     @Override
     public void onSocketStart(SocketThread thread, Socket socket) {
@@ -201,7 +227,8 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     @Override
     public void onSocketStop(SocketThread thread) {
-        panelBottom.setVisible(false);
+        cbPrivate.setText(cbPrivateText);
+        panelAllBottom.setVisible(false);
         panelTop.setVisible(true);
         setTitle(WINDOW_TITLE);
         userList.setListData(new String[0]);
@@ -209,7 +236,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     @Override
     public void onSocketReady(SocketThread thread, Socket socket) {
-        panelBottom.setVisible(true);
+        panelAllBottom.setVisible(true);
         panelTop.setVisible(false);
         String login = tfLogin.getText();
         String password = new String(tfPassword.getPassword());
