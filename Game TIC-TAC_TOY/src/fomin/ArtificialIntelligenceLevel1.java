@@ -295,7 +295,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
                 if (pointsMainDiagonal2 == pointsToWin) {
                     if (boxes.length - j - 2 >= 0 && isEmptyNextBoxForDiagonal(boxes, j + i + 1, boxes.length - j - 2, '2', needingPoints) && isMachineMadeTurn(boxes[j + i + 1][boxes.length - j - 2])) {
                         return true;
-                    } else if (j + i - pointsToWin >= 0 && boxes.length - j - 1 + pointsToWin <= boxes.length && isEmptyNextBoxForDiagonal(boxes, j + i - pointsToWin, boxes.length - j - 1 + pointsToWin, 'w', needingPoints) && isMachineMadeTurn(boxes[j + i - pointsToWin][boxes.length - j - 1 + pointsToWin])) {
+                    } else if (j + i - pointsToWin >= 0 && boxes.length - j - 1 + pointsToWin < boxes.length && isEmptyNextBoxForDiagonal(boxes, j + i - pointsToWin, boxes.length - j - 1 + pointsToWin, 'w', needingPoints) && isMachineMadeTurn(boxes[j + i - pointsToWin][boxes.length - j - 1 + pointsToWin])) {
                         return true;
                     }
                 }
@@ -308,7 +308,7 @@ public class ArtificialIntelligenceLevel1 extends ArtificialIntelligenceLevel0 {
                 if (pointsMainDiagonal22 == pointsToWin) {
                     if (boxes.length - j - i - 2 >= 0 && isEmptyNextBoxForDiagonal(boxes, j + 1, boxes.length - j - i - 2, '2', needingPoints) && isMachineMadeTurn(boxes[j + 1][boxes.length - j - i - 2])) {
                         return true;
-                    } else if (j - pointsToWin >= 0 && boxes.length - j - i - 1 + pointsToWin <= boxes.length && isEmptyNextBoxForDiagonal(boxes, j - pointsToWin, boxes.length - j - i - 1 + pointsToWin, 'w', needingPoints) && isMachineMadeTurn(boxes[j - pointsToWin][boxes.length - j - i - 1 + pointsToWin])) {
+                    } else if (j - pointsToWin >= 0 && boxes.length - j - i - 1 + pointsToWin < boxes.length && isEmptyNextBoxForDiagonal(boxes, j - pointsToWin, boxes.length - j - i - 1 + pointsToWin, 'w', needingPoints) && isMachineMadeTurn(boxes[j - pointsToWin][boxes.length - j - i - 1 + pointsToWin])) {
                         return true;
                     }
                 }

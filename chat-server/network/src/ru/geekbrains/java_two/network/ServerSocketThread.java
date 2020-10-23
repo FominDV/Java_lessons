@@ -20,6 +20,7 @@ public class ServerSocketThread extends Thread {
 
     @Override
     public void run() {
+
         listener.onServerStart(this);
         try (ServerSocket server = new ServerSocket(port)) {
             server.setSoTimeout(timeout);
