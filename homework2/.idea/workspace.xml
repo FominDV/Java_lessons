@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5910f776-625a-4461-939a-9cddc2772bf5" name="Default Changelist" comment="" />
+    <list default="true" id="5910f776-625a-4461-939a-9cddc2772bf5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../chat 2-7/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-server/ru/geekbrains/java_two/chat/server/core/ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-server/ru/geekbrains/java_two/chat/server/core/ClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +47,9 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Java/test" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -82,6 +92,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606687037131">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606687037131" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601600584550">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
