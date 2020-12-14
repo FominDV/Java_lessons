@@ -1,5 +1,8 @@
 package lesson1;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Tasks_1_2 {
@@ -11,9 +14,10 @@ public class Tasks_1_2 {
         printArray(stringArray);
         setIndexesForSwap(stringArray);
         printArray(stringArray);
-
         // task 2
-
+        ArrayList<String> arrayList=convertArrayToArrayList(stringArray);
+        System.out.println(arrayList.getClass().getSimpleName());
+        System.out.println(arrayList);
     }
 
 
@@ -39,18 +43,24 @@ public class Tasks_1_2 {
 
     private static <S> void setIndexesForSwap(S[] array) {
         int[] indexes = new int[2];
-        int i=0;
+        int i = 0;
         while (true) {
-            System.out.println("Inter index number "+(i+1));
+            System.out.println("Inter index number " + (i + 1));
             try {
                 indexes[i] = read.nextInt();
-                if(isNotValidIndex(indexes[i], array.length)) throw new RuntimeException();
-            }catch (RuntimeException e){
-                    System.out.println("indexes should be integer numbers, greater than 0 and less than " + (array.length - 1));
-                    continue;
+                if (isNotValidIndex(indexes[i], array.length)) throw new RuntimeException();
+            } catch (RuntimeException e) {
+                System.out.println("indexes should be integer numbers, greater than 0 and less than " + (array.length - 1));
+                continue;
             }
-            if(i==1) break; else i++;
+            if (i == 1) break;
+            else i++;
         }
-        swapElementsOfArray(array,indexes[0],indexes[1]);
+        swapElementsOfArray(array, indexes[0], indexes[1]);
+    }
+
+    //2. Написать метод, который преобразует массив в ArrayList;
+    private static <T> ArrayList<T> convertArrayToArrayList(T[] array) {
+       return new ArrayList<>(Arrays.asList(array));
     }
 }
