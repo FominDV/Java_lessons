@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6e60c7-aac0-4376-ada2-8a165912e7e6" name="Default Changelist" comment="" />
+    <list default="true" id="7f6e60c7-aac0-4376-ada2-8a165912e7e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/java3/src/lesson1/Tasks_1_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/java3/src/lesson1/Tasks_1_2.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,13 +74,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601221172737">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1607975554853">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601221172737" />
-    <state x="342" y="181" key="new project wizard" timestamp="1601221181977">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607975554853" />
+    <state x="342" y="181" key="new project wizard" timestamp="1607975575512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="342" y="181" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1601221181977" />
+    <state x="342" y="181" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1607975575512" />
   </component>
 </project>
