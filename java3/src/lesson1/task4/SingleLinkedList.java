@@ -5,14 +5,17 @@ import java.util.Collection;
 public class SingleLinkedList<T> {
     private int size = 0;
     private ElementOfSingleLinkedList linkOfFirstElement, linkOfLastElement;
-public SingleLinkedList(){
+
+    public SingleLinkedList() {
 
     }
-    public SingleLinkedList(Collection<? extends T> collection){
-        for(T element: collection){
+
+    public SingleLinkedList(Collection<? extends T> collection) {
+        for (T element : collection) {
             addFirst(element);
         }
     }
+
     public void addFirst(T object) {
         ElementOfSingleLinkedList<T> newElement = new ElementOfSingleLinkedList<>(object);
         newElement.setLinkOfNextElement(linkOfFirstElement);
@@ -31,16 +34,18 @@ public SingleLinkedList(){
         linkOfLastElement = newElement;
         size++;
     }
-public void add(T object, int index){
-    if (index == 0) {
-        addFirst(object);
-        return;
+
+    public void add(T object, int index) {
+        if (index == 0) {
+            addFirst(object);
+            return;
+        }
+        ElementOfSingleLinkedList newElement = new ElementOfSingleLinkedList(object);
+        newElement.setLinkOfNextElement(getLink(index));
+        getLink(index - 1).setLinkOfNextElement(newElement);
+        size++;
     }
-    ElementOfSingleLinkedList newElement=new ElementOfSingleLinkedList(object);
-    newElement.setLinkOfNextElement(getLink(index));
-    getLink(index-1).setLinkOfNextElement(newElement);
-    size++;
-}
+
     public void print() {
         ElementOfSingleLinkedList link = linkOfFirstElement;
         System.out.print("[ ");
@@ -75,7 +80,7 @@ public void add(T object, int index){
     }
 
     public void remove(int index) {
-        if (index == size-1) {
+        if (index == size - 1) {
             removeLast();
             return;
         }
@@ -105,15 +110,15 @@ public void add(T object, int index){
     }
 
     private boolean isValidIndex(int index) {
-        if (index < 0 || index >= size) return false;
-        else return true;
+        return !(index < 0 || index >= size);
     }
-    public void set(T object, int index){
-  ElementOfSingleLinkedList  newElement=new ElementOfSingleLinkedList(object);
-  ElementOfSingleLinkedList pastElement=getLink(index);
-  newElement.setLinkOfNextElement(pastElement.getLinkOfNextElement());
-  pastElement=newElement;
-  if(index!=0)
-  getLink(index-1).setLinkOfNextElement(newElement);
+
+    public void set(T object, int index) {
+        ElementOfSingleLinkedList newElement = new ElementOfSingleLinkedList(object);
+        ElementOfSingleLinkedList pastElement = getLink(index);
+        newElement.setLinkOfNextElement(pastElement.getLinkOfNextElement());
+        pastElement = newElement;
+        if (index != 0)
+            getLink(index - 1).setLinkOfNextElement(newElement);
     }
 }
