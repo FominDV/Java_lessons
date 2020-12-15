@@ -1,9 +1,18 @@
 package lesson1.task4;
 
+import java.util.Collection;
+
 public class SingleLinkedList<T> {
     private int size = 0;
     private ElementOfSingleLinkedList linkOfFirstElement, linkOfLastElement;
+public SingleLinkedList(){
 
+    }
+    public SingleLinkedList(Collection<? extends T> collection){
+        for(T element: collection){
+            addFirst(element);
+        }
+    }
     public void addFirst(T object) {
         ElementOfSingleLinkedList<T> newElement = new ElementOfSingleLinkedList<>(object);
         newElement.setLinkOfNextElement(linkOfFirstElement);
@@ -22,7 +31,16 @@ public class SingleLinkedList<T> {
         linkOfLastElement = newElement;
         size++;
     }
-
+public void add(T object, int index){
+    if (index == 0) {
+        addFirst(object);
+        return;
+    }
+    ElementOfSingleLinkedList newElement=new ElementOfSingleLinkedList(object);
+    newElement.setLinkOfNextElement(getLink(index));
+    getLink(index-1).setLinkOfNextElement(newElement);
+    size++;
+}
     public void print() {
         ElementOfSingleLinkedList link = linkOfFirstElement;
         System.out.print("[ ");
