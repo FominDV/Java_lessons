@@ -34,6 +34,8 @@ public class Main {
         list1.add(4,2);
         list1.print();
         printSize(list1);
+        list1.set(10,1);
+        list1.print();
         //Test second constructor
         String[] stringArray={"a","b","ab","c","ac","bc"};
         SingleLinkedList<String> listString= new SingleLinkedList<>(Arrays.asList(stringArray));

@@ -108,4 +108,12 @@ public void add(T object, int index){
         if (index < 0 || index >= size) return false;
         else return true;
     }
+    public void set(T object, int index){
+  ElementOfSingleLinkedList  newElement=new ElementOfSingleLinkedList(object);
+  ElementOfSingleLinkedList pastElement=getLink(index);
+  newElement.setLinkOfNextElement(pastElement.getLinkOfNextElement());
+  pastElement=newElement;
+  if(index!=0)
+  getLink(index-1).setLinkOfNextElement(newElement);
+    }
 }
