@@ -46,8 +46,9 @@ public class Task3 {
         printWeightOfBox(box2);
         printWeightOfBox(box5);
         printComparingOfBoxes(box2,box4);
-        box1.moveToOtherBox(box2);
-        printWeightOfBox(box2);
+        box1.moveToOtherBox(box4);
+        printWeightOfBox(box1);
+        printWeightOfBox(box4);
     }
 
     private static void printWeightOfBox(Box box) {
@@ -57,4 +58,5 @@ public class Task3 {
     private static void printComparingOfBoxes(Box box1, Box box2) {
         System.out.printf("Weights of %s and %s are equal: %b\n", box1.toString(), box2.toString(), box1.compare(box2));
     }
+
 }

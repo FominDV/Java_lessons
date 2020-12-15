@@ -30,9 +30,11 @@ public class Box<T extends Fruit> {
         else return false;
     }
 
-    protected void moveToOtherBox(Box box) {
+    protected void moveToOtherBox(Box<T> box) {
+        if(!this.getClass().equals(box.getClass())) return;
         for (T fruit : fruits)
             box.putFruit(fruit);
+        System.out.printf("Fruits from %s was moved to %s\n",toString(),box.toString());
         fruits.clear();
     }
 
@@ -41,4 +43,5 @@ public class Box<T extends Fruit> {
         if (fruits.size() == 0) return name;
         return name + " with " + fruits.get(0).getClass().getSimpleName();
     }
+
 }
