@@ -43,7 +43,7 @@ public class Car implements Runnable {
         for (int i = 0; i < stages.size(); i++) {
             stages.get(i).go(this);
         }
-        lock.tryLock();
+        lock.lock();
         if(!hasWinner){
             hasWinner=true;
             System.out.println(name+" - WIN");
