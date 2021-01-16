@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Car implements Runnable {
     private static final Lock lock=new ReentrantLock();
-    private static boolean hasWinner;
+    private volatile static boolean hasWinner;
     private static int CARS_COUNT;
     static {
         CARS_COUNT = 0;
