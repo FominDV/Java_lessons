@@ -3,8 +3,11 @@ package lesson6;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Car implements Runnable {
+    private static final Lock lock=new ReentrantLock();
     private static boolean hasWinner;
     private static int CARS_COUNT;
     static {
@@ -40,10 +43,12 @@ public class Car implements Runnable {
         for (int i = 0; i < stages.size(); i++) {
             stages.get(i).go(this);
         }
+        lock.tryLock();
         if(!hasWinner){
             hasWinner=true;
             System.out.println(name+" - WIN");
         }
+        lock.unlock();
         MainClass.preparingCDL.countDown();
     }
 }
