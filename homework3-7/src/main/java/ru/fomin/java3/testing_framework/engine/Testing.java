@@ -67,7 +67,7 @@ public class Testing {
 
     private static void testing(Class clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         int priority;
-        Object instance = clazz.getDeclaredConstructor().newInstance();
+        Object instance = getInstanceByClass(clazz);
         Object[] args = new Object[0];
         Method method;
         LOGGER.info("Running the method by annotation @BeforeSuite");
@@ -90,6 +90,23 @@ public class Testing {
         }
         LOGGER.info("Running the method by annotation @AfterSuite");
         if (SPECIAL_METHODS[1] != null) SPECIAL_METHODS[1].invoke(instance, args);
+    }
+
+    private static Object getInstanceByClass(Class clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        try {
+            return clazz.newInstance();
+        }catch (Exception e){
+            Constructor constructor=clazz.getConstructors()[0];
+            Class[] parameters=constructor.getParameterTypes();
+            Object[] args=new Object[parameters.length];
+            for (int i = 0; i < args.length; i++) {
+                if(parameters[i].isPrimitive()){
+                    if (parameters[i].equals(boolean.class)) args[i]=false;
+                    else args[i]=(byte)1;
+                }else args[i]=null;
+            }
+            return constructor.newInstance(args);
+        }
     }
 
 
