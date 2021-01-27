@@ -67,7 +67,11 @@ public class Testing {
 
     private static void testing(Class clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         int priority;
+<<<<<<< HEAD
         Object instance = clazz.getDeclaredConstructor().newInstance();
+=======
+        Object instance = getInstanceByClass(clazz);
+>>>>>>> homework3-7
         Object[] args = new Object[0];
         Method method;
         LOGGER.info("Running the method by annotation @BeforeSuite");
@@ -92,6 +96,26 @@ public class Testing {
         if (SPECIAL_METHODS[1] != null) SPECIAL_METHODS[1].invoke(instance, args);
     }
 
+<<<<<<< HEAD
+=======
+    private static Object getInstanceByClass(Class clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        try {
+            return clazz.newInstance();
+        }catch (Exception e){
+            Constructor constructor=clazz.getConstructors()[0];
+            Class[] parameters=constructor.getParameterTypes();
+            Object[] args=new Object[parameters.length];
+            for (int i = 0; i < args.length; i++) {
+                if(parameters[i].isPrimitive()){
+                    if (parameters[i].equals(boolean.class)) args[i]=false;
+                    else args[i]=(byte)1;
+                }else args[i]=null;
+            }
+            return constructor.newInstance(args);
+        }
+    }
+
+>>>>>>> homework3-7
 
     private static void addListToMap(Integer priority, Method method) {
         LinkedList<Method> list = methodTestTreeMap.containsKey(priority) ? methodTestTreeMap.get(priority) : new LinkedList<>();
