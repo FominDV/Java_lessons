@@ -12,13 +12,15 @@ public class TestClass2 {
     private float aFloat;
     private List list;
     private byte aByte;
-    public TestClass2(String name, int id, boolean isRight, float aFloat, List list, byte aByte){
+    private int[] intArr;
+    public TestClass2(String name, int id, boolean isRight, float aFloat, List list, byte aByte, int[] intArr){
         this.name=name;
         this.id=id;
         this.isRight=isRight;
         this.aFloat=aFloat;
         this.list=list;
         this.aByte=aByte;
+        this.intArr=intArr;
     }
     @Test(priority = -13320)
     public void testAAA(){

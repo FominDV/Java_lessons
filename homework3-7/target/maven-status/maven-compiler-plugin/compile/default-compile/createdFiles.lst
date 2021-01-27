@@ -1,0 +1,6 @@
+ru\fomin\java3\test_classes\TestClass.class
+ru\fomin\java3\testing_framework\engine\Testing.class
+ru\fomin\java3\testing_framework\annonetions\Test.class
+ru\fomin\java3\test_classes\MainClass.class
+ru\fomin\java3\testing_framework\annonetions\AfterSuite.class
+ru\fomin\java3\testing_framework\annonetions\BeforeSuite.class
