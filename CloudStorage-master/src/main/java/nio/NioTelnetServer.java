@@ -232,7 +232,7 @@ public class NioTelnetServer {
     //Move to directory by path
     private void cd(String pathString, Selector selector) throws IOException {
         Path path = getNormalizePath(pathString);
-        if (Files.isDirectory(path) && path.startsWith(ROOT_DIRECTORY)) {
+        if (Files.isDirectory(path)) {
             currentDirectory = path.toString();
         } else {
             sendErrorMessage(selector);
@@ -307,10 +307,12 @@ public class NioTelnetServer {
     //User can insert absolute or relative path
     private Path getNormalizePath(String source) {
         Path path = Paths.get(source);
-        if (path.startsWith(ROOT_DIRECTORY)) {
-            return path;
-        } else {
-            return Paths.get(currentDirectory).resolve(source).normalize();
+        if (!path.startsWith(ROOT_DIRECTORY)) {
+            path = Paths.get(currentDirectory).resolve(path).normalize();
         }
+        if (!path.startsWith(ROOT_DIRECTORY)) {
+            return Paths.get(",");
+        }
+        return path;
     }
 }
