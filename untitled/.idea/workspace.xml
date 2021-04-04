@@ -23,11 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff0cf667-1908-46de-9a3e-a995df268c5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../chat 2-7/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-client/ru/geekbrains/java_two/chat/client/ClientGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-server/out/production/chat-server/ru/geekbrains/java_two/chat/server/core/ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-server/out/production/chat-server/ru/geekbrains/java_two/chat/server/core/ClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +49,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../homework2" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -66,8 +65,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598558832889</updated>
+      <workItem from="1617537524320" duration="70000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -80,19 +83,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="440" y="94" key="#Project_Structure" timestamp="1598558859168">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1598558859168" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606686979417">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606686979417" />
-    <state x="342" y="181" key="new project wizard" timestamp="1598558902519">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="342" y="181" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1598558902519" />
   </component>
 </project>
