@@ -1,9 +1,9 @@
-package ru.fomin.objects;
+package ru.fomin.employers;
 
 public interface Analyst {
 
     String createDocumentation();
 
-    String create
+    String createTechnicalSpecification(String description);
 
 }

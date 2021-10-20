@@ -1,4 +1,4 @@
-package ru.fomin.objects;
+package ru.fomin.employers;
 
 public interface Frontend {
 
