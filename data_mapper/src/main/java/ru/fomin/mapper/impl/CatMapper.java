@@ -4,22 +4,47 @@ import ru.fomin.SqlConnector;
 import ru.fomin.entities.Cat;
 import ru.fomin.mapper.DataMapper;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CatMapper implements DataMapper<Cat, Long> {
+public class CatMapper extends DataMapper<Cat, Long> {
 
     private static final String CREATE_TEMPLATE = "INSERT INTO PUBLIC.CAT (NAME, WEIGHT) VALUES";
+    private static final String FIND_TEMPLATE = "SELECT * FROM PUBLIC.CAT WHERE ID = ";
+    private static final String FIND_ALL_TEMPLATE = "SELECT * FROM PUBLIC.CAT";
 
     @Override
-    public Optional<Cat> findById(Long aLong) {
-        return Optional.empty();
+    public Optional<Cat> findById(Long id) throws SQLException, ClassNotFoundException {
+        Cat cat;
+        if (identityMap.containsKey(id)) {
+            cat = identityMap.get(id);
+        } else {
+            cat = new Cat();
+            ResultSet resultSet = SqlConnector.getPreparedStatement(FIND_TEMPLATE + id).executeQuery();
+            while (resultSet.next()) {
+                cat.setId(resultSet.getLong(1));
+                cat.setName(resultSet.getString(2));
+                cat.setWeight(resultSet.getInt(3));
+            }
+        }
+        return Optional.of(cat);
     }
 
     @Override
-    public List<Cat> findAll() {
-        return null;
+    public List<Cat> findAll() throws SQLException, ClassNotFoundException {
+        List<Cat> catList = new ArrayList<>();
+        ResultSet resultSet = SqlConnector.getPreparedStatement(FIND_ALL_TEMPLATE).executeQuery();
+        while (resultSet.next()) {
+            Cat cat = new Cat();
+            cat.setId(resultSet.getLong(1));
+            cat.setName(resultSet.getString(2));
+            cat.setWeight(resultSet.getInt(3));
+            catList.add(cat);
+        }
+        return catList;
     }
 
     @Override

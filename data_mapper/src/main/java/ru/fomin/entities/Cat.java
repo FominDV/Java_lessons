@@ -6,6 +6,10 @@ public class Cat {
     private String name;
     private Integer weight;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -26,4 +30,8 @@ public class Cat {
         this.weight = weight;
     }
 
+    @Override
+    public String toString() {
+        return String.format("id: %d, name %s, weight: %d\n", id, name, weight);
+    }
 }

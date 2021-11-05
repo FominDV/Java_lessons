@@ -1,17 +1,20 @@
 package ru.fomin.mapper;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-public interface DataMapper<T, ID> {
+public abstract class DataMapper<T, ID> {
 
-    Optional<T> findById(ID id);
+    protected HashMap<ID, T> identityMap = new HashMap<>();
 
-    List<T> findAll();
+    public abstract Optional<T> findById(ID id) throws SQLException, ClassNotFoundException;
 
-    void delete(ID id);
+    public abstract List<T> findAll() throws SQLException, ClassNotFoundException;
 
-    void create(T entity) throws SQLException, ClassNotFoundException;
+    public abstract void delete(ID id);
+
+    public abstract void create(T entity) throws SQLException, ClassNotFoundException;
 
 }
