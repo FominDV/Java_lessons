@@ -13,7 +13,7 @@ public abstract class DataMapper<T, ID> {
 
     public abstract List<T> findAll() throws SQLException, ClassNotFoundException;
 
-    public abstract void delete(ID id);
+    public abstract void delete(ID id) throws SQLException, ClassNotFoundException;
 
     public abstract void create(T entity) throws SQLException, ClassNotFoundException;
 

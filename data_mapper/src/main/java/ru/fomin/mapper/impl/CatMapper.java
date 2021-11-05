@@ -15,6 +15,7 @@ public class CatMapper extends DataMapper<Cat, Long> {
     private static final String CREATE_TEMPLATE = "INSERT INTO PUBLIC.CAT (NAME, WEIGHT) VALUES";
     private static final String FIND_TEMPLATE = "SELECT * FROM PUBLIC.CAT WHERE ID = ";
     private static final String FIND_ALL_TEMPLATE = "SELECT * FROM PUBLIC.CAT";
+    private static final String DELETE_TEMPLATE = "DELETE FROM PUBLIC.CAT WHERE ID = ";
 
     @Override
     public Optional<Cat> findById(Long id) throws SQLException, ClassNotFoundException {
@@ -25,9 +26,7 @@ public class CatMapper extends DataMapper<Cat, Long> {
             cat = new Cat();
             ResultSet resultSet = SqlConnector.getPreparedStatement(FIND_TEMPLATE + id).executeQuery();
             while (resultSet.next()) {
-                cat.setId(resultSet.getLong(1));
-                cat.setName(resultSet.getString(2));
-                cat.setWeight(resultSet.getInt(3));
+                collectCat(cat, resultSet);
             }
         }
         return Optional.of(cat);
@@ -39,17 +38,15 @@ public class CatMapper extends DataMapper<Cat, Long> {
         ResultSet resultSet = SqlConnector.getPreparedStatement(FIND_ALL_TEMPLATE).executeQuery();
         while (resultSet.next()) {
             Cat cat = new Cat();
-            cat.setId(resultSet.getLong(1));
-            cat.setName(resultSet.getString(2));
-            cat.setWeight(resultSet.getInt(3));
+            collectCat(cat, resultSet);
             catList.add(cat);
         }
         return catList;
     }
 
     @Override
-    public void delete(Long aLong) {
-
+    public void delete(Long id) throws SQLException, ClassNotFoundException {
+        SqlConnector.getStatement().executeUpdate(DELETE_TEMPLATE + id);
     }
 
     @Override
@@ -58,4 +55,12 @@ public class CatMapper extends DataMapper<Cat, Long> {
         stringBuilder.append(" ('").append(entity.getName()).append("', ").append(entity.getWeight()).append(")");
         SqlConnector.getStatement().executeUpdate(stringBuilder.toString());
     }
+
+    private Cat collectCat(Cat cat, ResultSet resultSet) throws SQLException {
+        cat.setId(resultSet.getLong(1));
+        cat.setName(resultSet.getString(2));
+        cat.setWeight(resultSet.getInt(3));
+        return cat;
+    }
+
 }

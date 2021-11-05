@@ -39,11 +39,4 @@ public class SqlConnector {
         return statement;
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        if (connection == null) {
-            connect();
-        }
-        return connection;
-    }
-
 }
