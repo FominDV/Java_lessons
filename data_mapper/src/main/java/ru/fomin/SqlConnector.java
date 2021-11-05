@@ -1,11 +1,8 @@
-package ru.fomin.entities;
+package ru.fomin;
 
 import org.flywaydb.core.Flyway;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class SqlConnector {
 
@@ -24,6 +21,13 @@ public class SqlConnector {
         flyway.migrate();
     }
 
+    public static PreparedStatement getPreparedStatement(String statementTemplate) throws SQLException, ClassNotFoundException {
+        if (connection == null) {
+            connect();
+        }
+        return connection.prepareStatement(statementTemplate);
+    }
+
     public static void disconnect() throws SQLException {
         connection.close();
     }
@@ -33,6 +37,13 @@ public class SqlConnector {
             connect();
         }
         return statement;
+    }
+
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        if (connection == null) {
+            connect();
+        }
+        return connection;
     }
 
 }

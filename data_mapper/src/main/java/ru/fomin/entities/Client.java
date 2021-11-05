@@ -3,23 +3,19 @@ package ru.fomin.entities;
 public class Client {
 
     private Long id;
-    private String na;
+    private String name;
     private Integer age;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNa() {
-        return na;
+        return name;
     }
 
-    public void setNa(String na) {
-        this.na = na;
+    public void setNa(String name) {
+        this.name = name;
     }
 
     public Integer getAge() {
