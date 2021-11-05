@@ -9,9 +9,9 @@ import java.sql.Statement;
 
 public class SqlConnector {
 
-    private static final String URL_DATA_SOURCE = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String USER = "admin777";
-    private static final String PASSWORD = "admin777";
+    private static final String URL_DATA_SOURCE = "jdbc:postgresql://localhost:5431/postgres";
+    private static final String USER = "admin";
+    private static final String PASSWORD = "admin";
 
     private static Connection connection;
     private static Statement statement;
@@ -20,7 +20,7 @@ public class SqlConnector {
         Class.forName("org.postgresql.Driver");
         connection = DriverManager.getConnection(URL_DATA_SOURCE, USER, PASSWORD);
         statement = connection.createStatement();
-        Flyway flyway = Flyway.configure().dataSource(URL_DATA_SOURCE, USER, PASSWORD).load();
+        Flyway flyway = Flyway.configure().envVars().dataSource(URL_DATA_SOURCE, USER, PASSWORD).load();
         flyway.migrate();
     }
 

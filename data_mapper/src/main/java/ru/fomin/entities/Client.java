@@ -1,6 +1,6 @@
 package ru.fomin.entities;
 
-public class User {
+public class Client {
 
     private Long id;
     private String na;
